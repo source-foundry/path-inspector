@@ -26,8 +26,15 @@ PROBABLE_OVERLAPS = [
     "uni03A8",
 ]
 
-# TODO: add number of contours check before the simplify step, if none then can skip
-# because there will be no overlap
+
+def has_overlap(skia_path_pre: pathops.Path) -> bool:
+    # if there are no contours, then there are no overlaps
+    # skip pathops.simplify and diff check
+    if len(list(skia_path_pre.contours)) == 0:
+        return False
+    # analyze skia simplified outline diff
+    skia_path_post = pathops.simplify(skia_path_pre, clockwise=skia_path_pre.clockwise)
+    return skia_path_pre != skia_path_post
 
 
 def overlap_run(args: argparse.Namespace) -> None:
@@ -52,17 +59,9 @@ def overlap_run(args: argparse.Namespace) -> None:
                 # confirm that the glyph is in the font
                 tt["glyf"][probable_glyphname]  # type: ignore
                 skia_path_pre = ttfont_glyph_to_skia_path(glyphname, tt)
-                if len(list(skia_path_pre.contours)) == 0:
-                    # if there are no contours, there are no overlaps
-                    # skip pathops.simplify and diff check
-                    pass
-                else:
-                    skia_path_post = pathops.simplify(
-                        skia_path_pre, clockwise=skia_path_pre.clockwise
-                    )
-                    if skia_path_pre != skia_path_post:
-                        print(f"{fontpath}: overlapping paths are present")
-                        sys.exit(1)
+                if has_overlap(skia_path_pre):
+                    print(f"{fontpath}: overlapping paths are present")
+                    sys.exit(1)
             # if the glyph is not present in the font
             # raises KeyError and we skip it
             except KeyError:
@@ -77,17 +76,9 @@ def overlap_run(args: argparse.Namespace) -> None:
                 skia_path_pre = ttfont_glyph_to_skia_path(
                     local_glyphname, tt  # type: ignore
                 )
-                if len(list(skia_path_pre.contours)) == 0:
-                    # if there are no contours, there is no overlap
-                    # skip pathops.simplify and diff check
-                    pass
-                else:
-                    skia_path_post = pathops.simplify(
-                        skia_path_pre, clockwise=skia_path_pre.clockwise
-                    )
-                    if skia_path_pre != skia_path_post:
-                        print(f"{fontpath}: overlapping paths are present")
-                        sys.exit(1)
+                if has_overlap(skia_path_pre):
+                    print(f"{fontpath}: overlapping paths are present")
+                    sys.exit(1)
 
         # if we made it this far, then there were no overlapping paths
         print(f"{fontpath}: no overlapping paths")
@@ -98,41 +89,17 @@ def overlap_run(args: argparse.Namespace) -> None:
         # confirm that `glyphname` request is in the font
         validate_glyph_in_font(glyphname, tt)
         skia_path_pre = ttfont_glyph_to_skia_path(glyphname, tt)
-        if len(list(skia_path_pre.contours)) == 0:
-            # if there are no contours, there is no overlap
-            # skip pathops.simplify and diff check
-            # declare test_pass parameter = False
-            print(overlap_result(glyphname, False, nocolor=args.nocolor))
-        else:
-            skia_path_post = pathops.simplify(
-                skia_path_pre, clockwise=skia_path_pre.clockwise
-            )
-            # pass = has overlap
-            # fail = no overlap
-            test_pass: bool = skia_path_pre != skia_path_post
-            print(overlap_result(glyphname, test_pass, nocolor=args.nocolor))
+        print(
+            overlap_result(glyphname, has_overlap(skia_path_pre), nocolor=args.nocolor)
+        )
     else:
         glyph_names = tt.getGlyphOrder()
         for local_glyphname in glyph_names:
             skia_path_pre = ttfont_glyph_to_skia_path(local_glyphname, tt)  # type: ignore
-            if len(list(skia_path_pre.contours)) == 0:
-                # if there are no contours, there is no overlap
-                # skip pathops.simplify and diff check
-                # declare test_pass parameter = False
-                print(
-                    overlap_result(
-                        local_glyphname, False, nocolor=args.nocolor  # type: ignore
-                    )
+            print(
+                overlap_result(
+                    str(local_glyphname),
+                    has_overlap(skia_path_pre),
+                    nocolor=args.nocolor,
                 )
-            else:
-                skia_path_post = pathops.simplify(
-                    skia_path_pre, clockwise=skia_path_pre.clockwise
-                )
-                # pass = has overlap
-                # fail = no overlap
-                test_pass = skia_path_pre != skia_path_post
-                print(
-                    overlap_result(
-                        str(local_glyphname), test_pass, nocolor=args.nocolor
-                    )
-                )
+            )
