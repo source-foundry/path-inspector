@@ -150,7 +150,9 @@ def test_path_run_single_glyph_composite_counter_clockwise_nocolor(capsys, monke
     captured = capsys.readouterr()
     # must be in a tty to get ANSI color output
     # this is mocked above
-    assert captured.out == (
-        "[ uni2E2E ]: counter-clockwise\n"
-        "          with component 'question' transform: [[-1.0, 0], [0, 1.0]]\n"
+    assert "[ uni2E2E ]: counter-clockwise" in captured.out
+
+    assert (
+        "          with component 'question' transform: [[-1.0, 0], [0, 1.0]]"
+        in captured.out
     )
