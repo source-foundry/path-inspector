@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ttFont sfntVersion="\x00\x01\x00\x00" ttLibVersion="4.15">
+
+  <glyf>
+
+    <!-- The xMin, yMin, xMax and yMax values
+         will be recalculated by the compiler. -->
+
+    <TTGlyph name=".notdef"/><!-- contains no outline data -->
+
+    <TTGlyph name="A" xMin="0" yMin="0" xMax="638" yMax="717">
+      <contour>
+        <pt x="545" y="0" on="1"/>
+        <pt x="459" y="221" on="1"/>
+        <pt x="176" y="221" on="1"/>
+        <pt x="91" y="0" on="1"/>
+        <pt x="0" y="0" on="1"/>
+        <pt x="279" y="717" on="1"/>
+        <pt x="360" y="717" on="1"/>
+        <pt x="638" y="0" on="1"/>
+      </contour>
+      <contour>
+        <pt x="432" y="301" on="1"/>
+        <pt x="352" y="517" on="1"/>
+        <pt x="349" y="525" on="0"/>
+        <pt x="335" y="567" on="0"/>
+        <pt x="322" y="612" on="0"/>
+        <pt x="318" y="624" on="1"/>
+        <pt x="310" y="593" on="0"/>
+        <pt x="293" y="534" on="0"/>
+        <pt x="287" y="517" on="1"/>
+        <pt x="206" y="301" on="1"/>
+      </contour>
+      <instructions/>
+    </TTGlyph>
+
+    <TTGlyph name="comma" xMin="41" yMin="-129" xMax="192" yMax="116">
+      <contour>
+        <pt x="185" y="116" on="1"/>
+        <pt x="192" y="105" on="1"/>
+        <pt x="178" y="52" on="0"/>
+        <pt x="130" y="-75" on="0"/>
+        <pt x="106" y="-129" on="1"/>
+        <pt x="41" y="-129" on="1"/>
+        <pt x="55" y="-72" on="0"/>
+        <pt x="84" y="64" on="0"/>
+        <pt x="91" y="116" on="1"/>
+      </contour>
+      <instructions/>
+    </TTGlyph>
+
+    <TTGlyph name="question" xMin="12" yMin="-14" xMax="408" yMax="724">
+      <contour>
+        <pt x="140" y="201" on="1"/>
+        <pt x="140" y="228" on="1"/>
+        <pt x="140" y="266" on="0"/>
+        <pt x="155" y="321" on="0"/>
+        <pt x="192" y="370" on="0"/>
+        <pt x="224" y="398" on="1"/>
+        <pt x="262" y="430" on="0"/>
+        <pt x="306" y="475" on="0"/>
+        <pt x="324" y="517" on="0"/>
+        <pt x="324" y="547" on="1"/>
+        <pt x="324" y="595" on="0"/>
+        <pt x="262" y="647" on="0"/>
+        <pt x="203" y="647" on="1"/>
+        <pt x="154" y="647" on="0"/>
+        <pt x="78" y="622" on="0"/>
+        <pt x="43" y="605" on="1"/>
+        <pt x="12" y="675" on="1"/>
+        <pt x="52" y="696" on="0"/>
+        <pt x="149" y="724" on="0"/>
+        <pt x="209" y="724" on="1"/>
+        <pt x="304" y="724" on="0"/>
+        <pt x="408" y="630" on="0"/>
+        <pt x="408" y="549" on="1"/>
+        <pt x="408" y="504" on="0"/>
+        <pt x="379" y="441" on="0"/>
+        <pt x="326" y="388" on="0"/>
+        <pt x="290" y="358" on="1"/>
+        <pt x="256" y="330" on="0"/>
+        <pt x="222" y="288" on="0"/>
+        <pt x="210" y="246" on="0"/>
+        <pt x="210" y="218" on="1"/>
+        <pt x="210" y="201" on="1"/>
+      </contour>
+      <contour>
+        <pt x="117" y="54" on="1"/>
+        <pt x="117" y="91" on="0"/>
+        <pt x="152" y="121" on="0"/>
+        <pt x="179" y="121" on="1"/>
+        <pt x="204" y="121" on="0"/>
+        <pt x="240" y="91" on="0"/>
+        <pt x="240" y="54" on="1"/>
+        <pt x="240" y="18" on="0"/>
+        <pt x="204" y="-14" on="0"/>
+        <pt x="179" y="-14" on="1"/>
+        <pt x="152" y="-14" on="0"/>
+        <pt x="117" y="18" on="0"/>
+      </contour>
+      <instructions/>
+    </TTGlyph>
+
+    <TTGlyph name="space"/><!-- contains no outline data -->
+
+    <TTGlyph name="uni2E2E" xMin="35" yMin="-14" xMax="431" yMax="724">
+      <component glyphName="question" x="443" y="0" scalex="-1.0" scaley="1.0" flags="0x4"/>
+    </TTGlyph>
+
+  </glyf>
+
+</ttFont>
