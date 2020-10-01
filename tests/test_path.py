@@ -148,3 +148,99 @@ def test_path_run_single_glyph_composite_nocolor_when_not_tty(capsys):
     assert "\x1b[1;36m'Scedilla' path\x1b[0m" not in captured.out
     assert "'Scedilla' path" in captured.out
     assert "path.quadTo(728, -66, 699, -61)" in captured.out
+
+
+def test_path_run_single_glyph_no_contours_default(capsys, monkeypatch):
+    def mock_isatty():
+        return True
+
+    # apply the monkeypatch for sys.stdout.isatty()
+    monkeypatch.setattr(sys.stdout, "isatty", mock_isatty)
+
+    args = parser.parse_args([TESTFONT_PATH_1, ".notdef"])
+    path_run(args)
+
+    captured = capsys.readouterr()
+    # must be in a tty to get ANSI color output
+    # this is mocked above
+    assert "\x1b[1;36m'.notdef' path\x1b[0m" in captured.out
+    assert "No contours" in captured.out
+
+
+def test_path_run_full_glyph_set_default(capsys, monkeypatch):
+    expected_glyphnames = [
+        ".notdef",
+        "A",
+        "B",
+        "C",
+        "glyph00004",
+        "a",
+        "b",
+        "c",
+        "zero",
+        "one",
+        "two",
+        "three",
+        "comma",
+        "Amacron",
+        "Scedilla",
+        "glyph00015",
+        "glyph00016",
+    ]
+
+    def mock_isatty():
+        return True
+
+    # apply the monkeypatch for sys.stdout.isatty()
+    monkeypatch.setattr(sys.stdout, "isatty", mock_isatty)
+
+    args = parser.parse_args([TESTFONT_PATH_1])
+    path_run(args)
+
+    captured = capsys.readouterr()
+    # must be in a tty to get ANSI color output
+    # this is mocked above
+    for glyphname in expected_glyphnames:
+        assert f"\x1b[1;36m'{glyphname}' path\x1b[0m" in captured.out
+
+    assert "path.moveTo(869, 377)" in captured.out
+
+
+def test_path_run_full_glyph_set_nocolor_flag(capsys, monkeypatch):
+    expected_glyphnames = [
+        ".notdef",
+        "A",
+        "B",
+        "C",
+        "glyph00004",
+        "a",
+        "b",
+        "c",
+        "zero",
+        "one",
+        "two",
+        "three",
+        "comma",
+        "Amacron",
+        "Scedilla",
+        "glyph00015",
+        "glyph00016",
+    ]
+
+    def mock_isatty():
+        return True
+
+    # apply the monkeypatch for sys.stdout.isatty()
+    monkeypatch.setattr(sys.stdout, "isatty", mock_isatty)
+
+    args = parser.parse_args(["--nocolor", TESTFONT_PATH_1])
+    path_run(args)
+
+    captured = capsys.readouterr()
+    # must be in a tty to get ANSI color output
+    # this is mocked above
+    for glyphname in expected_glyphnames:
+        assert f"\x1b[1;36m'{glyphname}' path\x1b[0m" not in captured.out
+        assert f"'{glyphname}' path" in captured.out
+
+    assert "path.moveTo(869, 377)" in captured.out
