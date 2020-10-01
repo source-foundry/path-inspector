@@ -56,7 +56,9 @@ def test_direction_run_fail_invalid_glyphname(capsys):
     assert "Failed to open glyph" in captured.err
 
 
-def test_path_run_single_glyph_non_composite_no_contours_default(capsys, monkeypatch):
+def test_direction_run_single_glyph_non_composite_no_contours_default(
+    capsys, monkeypatch
+):
     def mock_isatty():
         return True
 
@@ -72,7 +74,9 @@ def test_path_run_single_glyph_non_composite_no_contours_default(capsys, monkeyp
     assert "[ \x1b[1;36m.notdef\x1b[0m ]: no contours" in captured.out
 
 
-def test_path_run_single_glyph_non_composite_no_contours_nocolor(capsys, monkeypatch):
+def test_direction_run_single_glyph_non_composite_no_contours_nocolor(
+    capsys, monkeypatch
+):
     def mock_isatty():
         return True
 
@@ -88,7 +92,9 @@ def test_path_run_single_glyph_non_composite_no_contours_nocolor(capsys, monkeyp
     assert "[ .notdef ]: no contours" in captured.out
 
 
-def test_path_run_single_glyph_non_composite_clockwise_default(capsys, monkeypatch):
+def test_direction_run_single_glyph_non_composite_clockwise_default(
+    capsys, monkeypatch
+):
     def mock_isatty():
         return True
 
@@ -104,7 +110,9 @@ def test_path_run_single_glyph_non_composite_clockwise_default(capsys, monkeypat
     assert "[ \x1b[1;36mA\x1b[0m ]: clockwise" in captured.out
 
 
-def test_path_run_single_glyph_non_composite_clockwise_nocolor(capsys, monkeypatch):
+def test_dierection_run_single_glyph_non_composite_clockwise_nocolor(
+    capsys, monkeypatch
+):
     def mock_isatty():
         return True
 
@@ -120,7 +128,9 @@ def test_path_run_single_glyph_non_composite_clockwise_nocolor(capsys, monkeypat
     assert "[ A ]: clockwise" in captured.out
 
 
-def test_path_run_single_glyph_composite_counter_clockwise_default(capsys, monkeypatch):
+def test_direction_run_single_glyph_composite_counter_clockwise_default(
+    capsys, monkeypatch
+):
     def mock_isatty():
         return True
 
@@ -137,7 +147,9 @@ def test_path_run_single_glyph_composite_counter_clockwise_default(capsys, monke
     assert "with component 'question' transform: [[-1.0, 0], [0, 1.0]]" in captured.out
 
 
-def test_path_run_single_glyph_composite_counter_clockwise_nocolor(capsys, monkeypatch):
+def test_direction_run_single_glyph_composite_counter_clockwise_nocolor(
+    capsys, monkeypatch
+):
     def mock_isatty():
         return True
 
@@ -152,6 +164,52 @@ def test_path_run_single_glyph_composite_counter_clockwise_nocolor(capsys, monke
     # this is mocked above
     assert "[ uni2E2E ]: counter-clockwise" in captured.out
 
+    assert (
+        "          with component 'question' transform: [[-1.0, 0], [0, 1.0]]"
+        in captured.out
+    )
+
+
+def test_direction_run_full_glyph_default(capsys, monkeypatch):
+    def mock_isatty():
+        return True
+
+    # apply the monkeypatch for sys.stdout.isatty()
+    monkeypatch.setattr(sys.stdout, "isatty", mock_isatty)
+
+    args = parser.parse_args([TESTFONT_PATH_1])
+    direction_run(args)
+
+    captured = capsys.readouterr()
+    assert "[ \x1b[1;36m.notdef\x1b[0m ]: no contours" in captured.out
+    assert "[ \x1b[1;36mspace\x1b[0m ]: no contours" in captured.out
+    assert "[ \x1b[1;36mcomma\x1b[0m ]: clockwise" in captured.out
+    assert "[ \x1b[1;36mquestion\x1b[0m ]: clockwise" in captured.out
+    assert "[ \x1b[1;36mA\x1b[0m ]: clockwise" in captured.out
+    assert "[ \x1b[1;36muni2E2E\x1b[0m ]: counter-clockwise" in captured.out
+    assert (
+        "          with component 'question' transform: [[-1.0, 0], [0, 1.0]]"
+        in captured.out
+    )
+
+
+def test_direction_run_full_glyph_nocolor(capsys, monkeypatch):
+    def mock_isatty():
+        return True
+
+    # apply the monkeypatch for sys.stdout.isatty()
+    monkeypatch.setattr(sys.stdout, "isatty", mock_isatty)
+
+    args = parser.parse_args(["--nocolor", TESTFONT_PATH_1])
+    direction_run(args)
+
+    captured = capsys.readouterr()
+    assert "[ .notdef ]: no contours" in captured.out
+    assert "[ space ]: no contours" in captured.out
+    assert "[ comma ]: clockwise" in captured.out
+    assert "[ question ]: clockwise" in captured.out
+    assert "[ A ]: clockwise" in captured.out
+    assert "[ uni2E2E ]: counter-clockwise" in captured.out
     assert (
         "          with component 'question' transform: [[-1.0, 0], [0, 1.0]]"
         in captured.out
