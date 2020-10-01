@@ -5,10 +5,13 @@ import os
 import sys
 
 from . import __version__
-from .direction import direction_run
-from .overlap import overlap_run
+
+
 from .path import path_run
-from .report import report_run
+
+# from .direction import direction_run
+# from .overlap import overlap_run
+# from .report import report_run
 
 
 def main() -> None:  # pragma: no cover
@@ -28,43 +31,43 @@ def run(argv) -> None:
     # -----------------------------
     # direction sub-command parser
     # -----------------------------
-    parser_direction = subparsers.add_parser(
-        "direction",
-        help="Path direction inspection",
-        description="Path direction inspection",
-    )
-    parser_direction.add_argument(
-        "-v", "--version", action="version", version=f"pathins v{__version__}"
-    )
-    parser_direction.add_argument(
-        "--nocolor", action="store_true", help="no ANSI color"
-    )
-    parser_direction.add_argument("fontpath", type=str, help="font file path")
-    parser_direction.add_argument(
-        "glyphname", type=str, help="glyph name (optional, default=all)", nargs="?"
-    )
-    parser_direction.set_defaults(func=direction_run)
+    # parser_direction = subparsers.add_parser(
+    #     "direction",
+    #     help="Path direction inspection",
+    #     description="Path direction inspection",
+    # )
+    # parser_direction.add_argument(
+    #     "-v", "--version", action="version", version=f"pathins v{__version__}"
+    # )
+    # parser_direction.add_argument(
+    #     "--nocolor", action="store_true", help="no ANSI color"
+    # )
+    # parser_direction.add_argument("fontpath", type=str, help="font file path")
+    # parser_direction.add_argument(
+    #     "glyphname", type=str, help="glyph name (optional, default=all)", nargs="?"
+    # )
+    # parser_direction.set_defaults(func=direction_run)
 
     # -----------------------------
     # overlap sub-command parser
     # -----------------------------
-    parser_overlap = subparsers.add_parser(
-        "overlap", help="Path overlap inspection", description="Path overlap inspection"
-    )
-    parser_overlap.add_argument(
-        "-v", "--version", action="version", version=f"pathins v{__version__}"
-    )
-    parser_overlap.add_argument(
-        "--check",
-        action="store_true",
-        help="quick check for any overlaps with status code",
-    )
-    parser_overlap.add_argument("--nocolor", action="store_true", help="no ANSI color")
-    parser_overlap.add_argument("fontpath", type=str, help="font file path")
-    parser_overlap.add_argument(
-        "glyphname", type=str, help="glyph name (optional, default=all)", nargs="?"
-    )
-    parser_overlap.set_defaults(func=overlap_run)
+    # parser_overlap = subparsers.add_parser(
+    #     "overlap", help="Path overlap inspection", description="Path overlap inspection"
+    # )
+    # parser_overlap.add_argument(
+    #     "-v", "--version", action="version", version=f"pathins v{__version__}"
+    # )
+    # parser_overlap.add_argument(
+    #     "--check",
+    #     action="store_true",
+    #     help="quick check for any overlaps with status code",
+    # )
+    # parser_overlap.add_argument("--nocolor", action="store_true", help="no ANSI color")
+    # parser_overlap.add_argument("fontpath", type=str, help="font file path")
+    # parser_overlap.add_argument(
+    #     "glyphname", type=str, help="glyph name (optional, default=all)", nargs="?"
+    # )
+    # parser_overlap.set_defaults(func=overlap_run)
 
     # -----------------------------
     # path sub-command parser
@@ -85,18 +88,22 @@ def run(argv) -> None:
     # -----------------------------
     # report sub-command parser
     # -----------------------------
-    parser_report = subparsers.add_parser(
-        "report", help="Path reporting", description="Path reporting"
-    )
-    parser_report.add_argument(
-        "-v", "--version", action="version", version=f"pathins v{__version__}"
-    )
-    parser_report.add_argument("--nocolor", action="store_true", help="no ANSI color")
-    parser_report.add_argument("fontpath", type=str, help="font file path")
-    parser_report.add_argument(
-        "glyphname", type=str, help="glyph name (optional, default=all)", nargs="?"
-    )
-    parser_report.set_defaults(func=report_run)
+    # parser_report = subparsers.add_parser(
+    #     "report", help="Path reporting", description="Path reporting"
+    # )
+    # parser_report.add_argument(
+    #     "-v", "--version", action="version", version=f"pathins v{__version__}"
+    # )
+    # parser_report.add_argument("--nocolor", action="store_true", help="no ANSI color")
+    # parser_report.add_argument("fontpath", type=str, help="font file path")
+    # parser_report.add_argument(
+    #     "glyphname", type=str, help="glyph name (optional, default=all)", nargs="?"
+    # )
+    # parser_report.set_defaults(func=report_run)
+
+    # -----------------------------
+    # Parse args
+    # -----------------------------
 
     args: argparse.Namespace = parser.parse_args(argv)
     # execute the default function assigned to the subcommand
