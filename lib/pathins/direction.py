@@ -8,9 +8,15 @@ from .stringbuilder import direction_result
 from .validators import validate_fontpath, validate_glyph_in_font
 
 # TODO: add --check support to confirm all paths in same direction
+# TODO: add --summary to include total CW and CCW directions
 
 
 def direction_run(args: argparse.Namespace) -> None:
+    """
+    Displays the direction of the outermost contour of one
+    or more glyphs in a font.  Results are expressed as either
+    "clockwise" or "counter-clockwise".
+    """
     fontpath: str = args.fontpath
     glyphname: str = args.glyphname
 
