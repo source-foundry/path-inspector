@@ -72,9 +72,7 @@ def run(argv) -> None:
     # -----------------------------
     # path sub-command parser
     # -----------------------------
-    parser_path = subparsers.add_parser(
-        "path", help="Path dump", description="Path dump"
-    )
+    parser_path = subparsers.add_parser("path", help="Path dump", description="Path dump")
     parser_path.add_argument(
         "-v", "--version", action="version", version=f"pathins v{__version__}"
     )
@@ -109,9 +107,7 @@ def run(argv) -> None:
     # execute the default function assigned to the subcommand
     if args.subparser_name is None:
         parser.print_usage()
-        sys.stderr.write(
-            f"pathins: error: please enter a valid sub-command{os.linesep}"
-        )
+        sys.stderr.write(f"pathins: error: please enter a valid sub-command{os.linesep}")
         sys.exit(1)
     else:
         args.func(args)
