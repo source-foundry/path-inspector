@@ -5,9 +5,9 @@ import os
 import sys
 
 from . import __version__
+from .direction import direction_run
 from .path import path_run
 
-# from .direction import direction_run
 # from .overlap import overlap_run
 # from .report import report_run
 
@@ -29,22 +29,20 @@ def run(argv) -> None:
     # -----------------------------
     # direction sub-command parser
     # -----------------------------
-    # parser_direction = subparsers.add_parser(
-    #     "direction",
-    #     help="Path direction inspection",
-    #     description="Path direction inspection",
-    # )
-    # parser_direction.add_argument(
-    #     "-v", "--version", action="version", version=f"pathins v{__version__}"
-    # )
-    # parser_direction.add_argument(
-    #     "--nocolor", action="store_true", help="no ANSI color"
-    # )
-    # parser_direction.add_argument("fontpath", type=str, help="font file path")
-    # parser_direction.add_argument(
-    #     "glyphname", type=str, help="glyph name (optional, default=all)", nargs="?"
-    # )
-    # parser_direction.set_defaults(func=direction_run)
+    parser_direction = subparsers.add_parser(
+        "direction",
+        help="Path direction inspection",
+        description="Path direction inspection",
+    )
+    parser_direction.add_argument(
+        "-v", "--version", action="version", version=f"pathins v{__version__}"
+    )
+    parser_direction.add_argument("--nocolor", action="store_true", help="no ANSI color")
+    parser_direction.add_argument("fontpath", type=str, help="font file path")
+    parser_direction.add_argument(
+        "glyphname", type=str, help="glyph name (optional, default=all)", nargs="?"
+    )
+    parser_direction.set_defaults(func=direction_run)
 
     # -----------------------------
     # overlap sub-command parser
