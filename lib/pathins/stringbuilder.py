@@ -1,6 +1,6 @@
 import os
 import sys
-from typing import Dict, Text
+from typing import Dict, Sequence, Text, Tuple
 
 ansicolors: Dict[Text, Text] = {
     "BLACK": "\033[30m",
@@ -59,19 +59,56 @@ def overlap_result(glyphname: str, test_pass: bool, nocolor=False) -> str:
 
 
 def direction_result(
-    glyphname: str, direction_clockwise: bool, contours: int, nocolor=False
+    glyphname: str,
+    direction_clockwise: bool,
+    contours: int,
+    components_with_transforms: Sequence[Tuple] = [],
+    nocolor=False,
 ) -> str:
     if not nocolor and sys.stdout.isatty():
         if contours == 0:
             return f"[ {light_cyan_start}{glyphname}{reset} ]: no contours"
         if direction_clockwise:
-            return f"[ {light_cyan_start}{glyphname}{reset} ]: clockwise"
+            return (
+                f"[ {light_cyan_start}{glyphname}{reset} ]: "
+                f"clockwise"
+                f"{_transformed_component(components_with_transforms)}"
+            )
         else:
-            return f"[ {light_cyan_start}{glyphname}{reset} ]: counter-clockwise"
+            return (
+                f"[ {light_cyan_start}{glyphname}{reset} ]: "
+                f"counter-clockwise"
+                f"{_transformed_component(components_with_transforms)}"
+            )
     else:
         if contours == 0:
             return f"[ {glyphname} ]: no contours"
         if direction_clockwise:
-            return f"[ {glyphname} ]: clockwise"
+            return (
+                f"[ {glyphname} ]: clockwise"
+                f"{_transformed_component(components_with_transforms)}"
+            )
         else:
-            return f"[ {glyphname} ]: counter-clockwise"
+            return (
+                f"[ {glyphname} ]: counter-clockwise"
+                f"{_transformed_component(components_with_transforms)}"
+            )
+
+
+def _transformed_component(components_with_transforms: Sequence[Tuple]) -> str:
+    if len(components_with_transforms) > 0:
+        left_pad = " " * 10
+        components_string = f"{os.linesep}"
+        for x, component in enumerate(components_with_transforms):
+            component_glyphname = component[0]
+            component_transform = component[1]
+            components_string += (
+                f"{left_pad}with component '{component_glyphname}' transform: "
+                f"{component_transform}"
+            )
+            if x + 1 < len(components_with_transforms):
+                # add newline unless this is the last component in the list
+                components_string += f"{os.linesep}"
+        return components_string
+    else:
+        return ""
