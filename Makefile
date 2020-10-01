@@ -12,6 +12,9 @@ dist-build: clean
 dist-push:
 	twine upload dist/*.whl dist/*.tar.gz
 
+import-sort:
+	isort lib/pathins
+
 install:
 	pip3 install --ignore-installed -r requirements.txt .
 
@@ -40,4 +43,4 @@ test-unit:
 uninstall:
 	pip3 uninstall --yes pathins
 
-.PHONY: all black clean dist-build dist-push install install-dev install-user test test-lint test-type-check test-unit uninstall
+.PHONY: all black clean dist-build dist-push import-sort install install-dev install-user test test-lint test-type-check test-unit uninstall
