@@ -13,7 +13,7 @@ EMAIL = "chris@sourcefoundry.org"
 AUTHOR = "Chris Simpkins"
 REQUIRES_PYTHON = ">=3.6.0"
 
-INSTALL_REQUIRES = ["skia-pathops >= 0.5.0", "cython >= 0.29.21"]
+INSTALL_REQUIRES = ["skia-pathops >= 0.5.0", "cython >= 0.29.21", "fontTools >= 4.15.0"]
 # Optional packages
 EXTRAS_REQUIRES = {
     # for developer installs
