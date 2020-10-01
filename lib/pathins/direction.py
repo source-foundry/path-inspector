@@ -14,7 +14,7 @@ from .validators import validate_fontpath, validate_glyph_in_font
 
 def direction_run(args: argparse.Namespace) -> None:
     """
-    Displays the direction of the outermost contour of one
+    Displays the direction of the outermost contour(s) of one
     or more glyphs in a font.  Results are expressed as either
     "clockwise" or "counter-clockwise".  The report includes
     the x, y scaling factors for transfomed components of
