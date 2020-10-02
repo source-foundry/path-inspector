@@ -5,6 +5,7 @@ import os
 import sys
 
 from . import __version__
+from .coordinates import coordinates_run
 from .direction import direction_run
 from .path import path_run
 
@@ -25,6 +26,26 @@ def run(argv) -> None:
         "-v", "--version", action="version", version=f"pathins v{__version__}"
     )
     subparsers = parser.add_subparsers(dest="subparser_name")
+
+    # -------------------------------
+    # coordinates sub-command parser
+    # -------------------------------
+    parser_coordinates = subparsers.add_parser(
+        "coordinates",
+        help="Path coordinates inspection",
+        description="Path coordinates inspection",
+    )
+    parser_coordinates.add_argument(
+        "-v", "--version", action="version", version=f"pathins v{__version__}"
+    )
+    parser_coordinates.add_argument(
+        "--nocolor", action="store_true", help="no ANSI color"
+    )
+    parser_coordinates.add_argument("fontpath", type=str, help="font file path")
+    parser_coordinates.add_argument(
+        "glyphname", type=str, help="glyph name (optional, default=all)", nargs="?"
+    )
+    parser_coordinates.set_defaults(func=coordinates_run)
 
     # -----------------------------
     # direction sub-command parser
