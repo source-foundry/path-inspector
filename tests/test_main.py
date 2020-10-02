@@ -43,6 +43,49 @@ def test_run_version(capsys):
     assert "pathins v" in captured.out
 
 
+#
+#
+# Sub-command parsers
+#
+#
+
+
+def test_run_coordinates_subcmd_invalid_file(capsys):
+    with pytest.raises(SystemExit) as e:
+        run(["coordinates", "boguspath"])
+
+    captured = capsys.readouterr()
+    assert e.value.code == 1
+    assert "does not appear to be a file" in captured.err
+
+
+def test_run_coordinates_subcmd_version(capsys):
+    with pytest.raises(SystemExit) as e:
+        run(["coordinates", "--version"])
+
+    captured = capsys.readouterr()
+    assert e.value.code == 0
+    assert "pathins v" in captured.out
+
+
+def test_run_direction_subcmd_invalid_file(capsys):
+    with pytest.raises(SystemExit) as e:
+        run(["direction", "boguspath"])
+
+    captured = capsys.readouterr()
+    assert e.value.code == 1
+    assert "does not appear to be a file" in captured.err
+
+
+def test_run_direction_subcmd_version(capsys):
+    with pytest.raises(SystemExit) as e:
+        run(["direction", "--version"])
+
+    captured = capsys.readouterr()
+    assert e.value.code == 0
+    assert "pathins v" in captured.out
+
+
 def test_run_path_subcmd_invalid_file(capsys):
     with pytest.raises(SystemExit) as e:
         run(["path", "boguspath"])
@@ -50,3 +93,12 @@ def test_run_path_subcmd_invalid_file(capsys):
     captured = capsys.readouterr()
     assert e.value.code == 1
     assert "does not appear to be a file" in captured.err
+
+
+def test_run_path_subcmd_version(capsys):
+    with pytest.raises(SystemExit) as e:
+        run(["path", "--version"])
+
+    captured = capsys.readouterr()
+    assert e.value.code == 0
+    assert "pathins v" in captured.out
