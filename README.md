@@ -8,10 +8,9 @@
 
 Path Inspector is a TTF font curve path inspection application.  The Python package installs the `pathins` command line executable and requires a Python v3.6+ interpreter.
 
-The project is in a very early stage of development and is not ready for general use.
+The following sub-commands available:
 
-The following sub-command support is available:
-
+- `coordinates`: path coordinates report (as of v0.3.0)
 - `direction`: outermost contour path direction report (as of v0.2.0)
 - `path`: curve path report
 
