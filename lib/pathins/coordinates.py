@@ -44,9 +44,7 @@ def coordinates_run(args: argparse.Namespace) -> None:
 
         # decompose composite glyphs
         if glyph.isComposite():
-            glyph = skia_path_to_ttfont_glyph(
-                ttfont_glyph_to_skia_path(local_glyphname, tt)
-            )
+            glyph = skia_path_to_ttfont_glyph(ttfont_glyph_to_skia_path(glyphname, tt))
 
         print(report_header(f"'{glyphname}' coordinates", nocolor=args.nocolor))
         sys.stdout.write(
