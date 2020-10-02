@@ -23,7 +23,7 @@ light_cyan_start: Text = ansicolors["LIGHT_CYAN"]
 reset: Text = ansicolors["RESET"]
 
 
-def green_text(text: str, nocolor=False) -> str:
+def green_text(text: str, nocolor: bool = False) -> str:
     """
     Returns green ANSI escape code colored text string
     """
@@ -33,7 +33,7 @@ def green_text(text: str, nocolor=False) -> str:
         return text
 
 
-def red_text(text: str, nocolor=False) -> str:
+def red_text(text: str, nocolor: bool = False) -> str:
     """
     Returns red ANSI escape code colored text string
     """
@@ -43,7 +43,7 @@ def red_text(text: str, nocolor=False) -> str:
         return text
 
 
-def report_header(header: str, nocolor=False) -> str:
+def report_header(header: str, nocolor: bool = False) -> str:
     header_len = len(header) + 1
     divider_char = "-"
     if not nocolor and sys.stdout.isatty():
@@ -61,7 +61,7 @@ def report_header(header: str, nocolor=False) -> str:
     return header_string
 
 
-def overlap_result(glyphname: str, test_pass: bool, nocolor=False) -> str:
+def overlap_result(glyphname: str, test_pass: bool, nocolor: bool = False) -> str:
     # color
     if not nocolor and sys.stdout.isatty():
         if test_pass:
@@ -83,7 +83,7 @@ def direction_result(
     direction_clockwise: bool,
     contours: int,
     components_with_transforms: Sequence[Tuple] = [],
-    nocolor=False,
+    nocolor: bool = False,
 ) -> str:
     if not nocolor and sys.stdout.isatty():
         if contours == 0:
