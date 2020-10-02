@@ -23,7 +23,7 @@ light_cyan_start: Text = ansicolors["LIGHT_CYAN"]
 reset: Text = ansicolors["RESET"]
 
 
-def path_header(header: str, nocolor=False) -> str:
+def report_header(header: str, nocolor=False) -> str:
     header_len = len(header) + 1
     divider_char = "-"
     if not nocolor and sys.stdout.isatty():
