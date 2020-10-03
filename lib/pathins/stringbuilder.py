@@ -23,6 +23,16 @@ light_cyan_start: Text = ansicolors["LIGHT_CYAN"]
 reset: Text = ansicolors["RESET"]
 
 
+def cyan_text(text: str, nocolor: bool = False) -> str:
+    """
+    Returns cyan ANSI escape code colored text string
+    """
+    if not nocolor:
+        return f"{cyan_start}{text}{reset}"
+    else:
+        return text
+
+
 def green_text(text: str, nocolor: bool = False) -> str:
     """
     Returns green ANSI escape code colored text string
