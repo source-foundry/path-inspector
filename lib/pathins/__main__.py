@@ -5,6 +5,7 @@ import os
 import sys
 
 from . import __version__
+from .contours import contours_run
 from .coordinates import coordinates_run
 from .direction import direction_run
 from .path import path_run
@@ -25,6 +26,24 @@ def run(argv) -> None:
         "-v", "--version", action="version", version=f"pathins v{__version__}"
     )
     subparsers = parser.add_subparsers(dest="subparser_name")
+
+    # -------------------------------
+    # contours sub-command parser
+    # -------------------------------
+    parser_contours = subparsers.add_parser(
+        "contours",
+        help="Contours inspection",
+        description="Contours inspection",
+    )
+    parser_contours.add_argument(
+        "-v", "--version", action="version", version=f"pathins v{__version__}"
+    )
+    parser_contours.add_argument("--nocolor", action="store_true", help="no ANSI color")
+    parser_contours.add_argument("fontpath", type=str, help="font file path")
+    parser_contours.add_argument(
+        "glyphname", type=str, help="glyph name (optional, default=all)", nargs="?"
+    )
+    parser_contours.set_defaults(func=contours_run)
 
     # -------------------------------
     # coordinates sub-command parser
