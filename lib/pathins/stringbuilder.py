@@ -33,6 +33,17 @@ def cyan_text(text: str, nocolor: bool = False) -> str:
         return text
 
 
+def cyan_bold_text(text: str, nocolor: bool = False) -> str:
+    """
+    Returns cyan ANSI escape code colored text string
+    with bold weight
+    """
+    if not nocolor:
+        return f"{light_cyan_start}{text}{reset}"
+    else:
+        return text
+
+
 def green_text(text: str, nocolor: bool = False) -> str:
     """
     Returns green ANSI escape code colored text string
