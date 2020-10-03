@@ -10,6 +10,7 @@ Path Inspector is a TTF font curve path inspection application.  The Python pack
 
 The following sub-commands are available:
 
+- `contours`: path contour number report (as of v0.4.0)
 - `coordinates`: path coordinates report (as of v0.3.0)
 - `direction`: outermost contour path direction report (as of v0.2.0)
 - `path`: curve path report

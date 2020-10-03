@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.4.0
+
+- add `contours` sub-command with glyph contour number reporting
+- change bold cyan glyph name color to bright bold cyan for sub-commands that use this color
+- add `stringbuilder.cyan_text` function
+- add `stringbuilder.cyan_bright_text` function
+
 ## v0.3.1
 
 - source cleanup
