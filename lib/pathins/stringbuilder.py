@@ -10,7 +10,7 @@ ansicolors: Dict[Text, Text] = {
     "BLUE": "\033[34m",
     "MAGENTA": "\033[35m",
     "CYAN": "\033[36m",
-    "BRIGHT_CYAN": "\033[1;36m",
+    "BRIGHT_BOLD_CYAN": "\033[1;96m",
     "WHITE": "\033[37m",
     "BOLD": "\033[1m",
     "RESET": "\033[0m",
@@ -19,7 +19,7 @@ ansicolors: Dict[Text, Text] = {
 green_start: Text = ansicolors["GREEN"]
 red_start: Text = ansicolors["RED"]
 cyan_start: Text = ansicolors["CYAN"]
-bright_cyan_start: Text = ansicolors["BRIGHT_CYAN"]
+bright_cyan_start: Text = ansicolors["BRIGHT_BOLD_CYAN"]
 reset: Text = ansicolors["RESET"]
 
 
