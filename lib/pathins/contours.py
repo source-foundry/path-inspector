@@ -4,7 +4,7 @@ from fontTools.ttLib import TTFont  # type: ignore
 from fontTools.ttLib.tables._g_l_y_f import Glyph  # type: ignore
 
 from .bridge import skia_path_to_ttfont_glyph, ttfont_glyph_to_skia_path
-from .stringbuilder import cyan_text
+from .stringbuilder import cyan_bold_text
 from .validators import validate_fontpath, validate_glyph_in_font
 
 
@@ -32,7 +32,7 @@ def contours_run(args: argparse.Namespace) -> None:
 
         glyph = glyf_table[glyphname]
         print(
-            f"[ {cyan_text(glyphname, nocolor=args.nocolor)} ]: "
+            f"[ {cyan_bold_text(glyphname, nocolor=args.nocolor)} ]: "
             f"{number_of_contours(glyphname, glyph, tt)}"
         )
     else:
@@ -41,7 +41,7 @@ def contours_run(args: argparse.Namespace) -> None:
             glyph = glyf_table[local_glyphname]
 
             print(
-                f"[ {cyan_text(local_glyphname, nocolor=args.nocolor)} ]: "
+                f"[ {cyan_bold_text(local_glyphname, nocolor=args.nocolor)} ]: "
                 f"{number_of_contours(local_glyphname, glyph, tt)}"
             )
 
