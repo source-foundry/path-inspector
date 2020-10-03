@@ -10,7 +10,7 @@ ansicolors: Dict[Text, Text] = {
     "BLUE": "\033[34m",
     "MAGENTA": "\033[35m",
     "CYAN": "\033[36m",
-    "LIGHT_CYAN": "\033[1;36m",
+    "BRIGHT_CYAN": "\033[1;36m",
     "WHITE": "\033[37m",
     "BOLD": "\033[1m",
     "RESET": "\033[0m",
@@ -19,7 +19,7 @@ ansicolors: Dict[Text, Text] = {
 green_start: Text = ansicolors["GREEN"]
 red_start: Text = ansicolors["RED"]
 cyan_start: Text = ansicolors["CYAN"]
-light_cyan_start: Text = ansicolors["LIGHT_CYAN"]
+bright_cyan_start: Text = ansicolors["BRIGHT_CYAN"]
 reset: Text = ansicolors["RESET"]
 
 
@@ -33,13 +33,13 @@ def cyan_text(text: str, nocolor: bool = False) -> str:
         return text
 
 
-def cyan_bold_text(text: str, nocolor: bool = False) -> str:
+def cyan_bright_text(text: str, nocolor: bool = False) -> str:
     """
     Returns cyan ANSI escape code colored text string
     with bold weight
     """
     if not nocolor:
-        return f"{light_cyan_start}{text}{reset}"
+        return f"{bright_cyan_start}{text}{reset}"
     else:
         return text
 
@@ -70,7 +70,7 @@ def report_header(header: str, nocolor: bool = False) -> str:
     if not nocolor and sys.stdout.isatty():
         header_string = (
             f"{divider_char * header_len}{os.linesep}"
-            f"{light_cyan_start}{header}{reset}{os.linesep}"
+            f"{bright_cyan_start}{header}{reset}{os.linesep}"
             f"{divider_char * header_len}"
         )
     else:
@@ -108,16 +108,16 @@ def direction_result(
 ) -> str:
     if not nocolor and sys.stdout.isatty():
         if contours == 0:
-            return f"[ {light_cyan_start}{glyphname}{reset} ]: no contours"
+            return f"[ {bright_cyan_start}{glyphname}{reset} ]: no contours"
         if direction_clockwise:
             return (
-                f"[ {light_cyan_start}{glyphname}{reset} ]: "
+                f"[ {bright_cyan_start}{glyphname}{reset} ]: "
                 f"clockwise"
                 f"{_transformed_component(components_with_transforms)}"
             )
         else:
             return (
-                f"[ {light_cyan_start}{glyphname}{reset} ]: "
+                f"[ {bright_cyan_start}{glyphname}{reset} ]: "
                 f"counter-clockwise"
                 f"{_transformed_component(components_with_transforms)}"
             )
