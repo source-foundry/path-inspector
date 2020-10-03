@@ -75,7 +75,7 @@ def test_coordinates_run_single_glyph_noncomposite_default(capsys, monkeypatch):
     captured = capsys.readouterr()
     # must be in a tty to get ANSI color output
     # this is mocked above
-    assert "\x1b[1;36m'A' coordinates\x1b[0m" in captured.out
+    assert "\x1b[1;96m'A' coordinates\x1b[0m" in captured.out
     # check first contour start coordinate appropriately labeled
     assert f"(545, 0) {COLORED_START}" in captured.out
     assert f"(459, 221) {ON_PATH}" in captured.out
@@ -103,7 +103,7 @@ def test_coordinates_run_single_glyph_noncomposite_nocolor(capsys, monkeypatch):
     captured = capsys.readouterr()
     # must be in a tty to get ANSI color output
     # this is mocked above
-    assert "\x1b[1;36m'A' coordinates\x1b[0m" not in captured.out
+    assert "\x1b[1;96m'A' coordinates\x1b[0m" not in captured.out
     assert "'A' coordinates" in captured.out
     # check first contour start coordinate appropriately labeled
     assert f"(545, 0) {COLORED_START}" not in captured.out
@@ -141,7 +141,7 @@ def test_coordinates_run_single_glyph_composite_default(capsys, monkeypatch):
     captured = capsys.readouterr()
     # must be in a tty to get ANSI color output
     # this is mocked above
-    assert "\x1b[1;36m'uni2E2E' coordinates\x1b[0m" in captured.out
+    assert "\x1b[1;96m'uni2E2E' coordinates\x1b[0m" in captured.out
 
     assert f"(303, 201) {COLORED_START}" in captured.out
     assert f"(303, 228) {ON_PATH}" in captured.out
@@ -174,7 +174,7 @@ def test_coordinates_run_single_glyph_composite_nocolor(capsys, monkeypatch):
     captured = capsys.readouterr()
     # must be in a tty to get ANSI color output
     # this is mocked above
-    assert "\x1b[1;36m'uni2E2E' coordinates\x1b[0m" not in captured.out
+    assert "\x1b[1;96m'uni2E2E' coordinates\x1b[0m" not in captured.out
     assert "'uni2E2E' coordinates" in captured.out
 
     assert f"(303, 201) {UNCOLORED_START}" in captured.out
@@ -208,12 +208,12 @@ def test_coordinates_run_multi_glyph_default(capsys, monkeypatch):
     captured = capsys.readouterr()
 
     # confirm all expected glyphs are included
-    assert "\x1b[1;36m'.notdef' coordinates\x1b[0m" in captured.out
-    assert "\x1b[1;36m'space' coordinates\x1b[0m" in captured.out
-    assert "\x1b[1;36m'comma' coordinates\x1b[0m" in captured.out
-    assert "\x1b[1;36m'question' coordinates\x1b[0m" in captured.out
-    assert "\x1b[1;36m'A' coordinates\x1b[0m" in captured.out
-    assert "\x1b[1;36m'uni2E2E' coordinates\x1b[0m" in captured.out
+    assert "\x1b[1;96m'.notdef' coordinates\x1b[0m" in captured.out
+    assert "\x1b[1;96m'space' coordinates\x1b[0m" in captured.out
+    assert "\x1b[1;96m'comma' coordinates\x1b[0m" in captured.out
+    assert "\x1b[1;96m'question' coordinates\x1b[0m" in captured.out
+    assert "\x1b[1;96m'A' coordinates\x1b[0m" in captured.out
+    assert "\x1b[1;96m'uni2E2E' coordinates\x1b[0m" in captured.out
 
     # check start paths across the glyphs
     assert f"(185, 116) {COLORED_START}" in captured.out
@@ -276,12 +276,12 @@ def test_coordinates_run_multi_glyph_nocolor(capsys, monkeypatch):
     captured = capsys.readouterr()
 
     # confirm all expected glyphs are included
-    assert "\x1b[1;36m'.notdef' coordinates\x1b[0m" not in captured.out
-    assert "\x1b[1;36m'space' coordinates\x1b[0m" not in captured.out
-    assert "\x1b[1;36m'comma' coordinates\x1b[0m" not in captured.out
-    assert "\x1b[1;36m'question' coordinates\x1b[0m" not in captured.out
-    assert "\x1b[1;36m'A' coordinates\x1b[0m" not in captured.out
-    assert "\x1b[1;36m'uni2E2E' coordinates\x1b[0m" not in captured.out
+    assert "\x1b[1;96m'.notdef' coordinates\x1b[0m" not in captured.out
+    assert "\x1b[1;96m'space' coordinates\x1b[0m" not in captured.out
+    assert "\x1b[1;96m'comma' coordinates\x1b[0m" not in captured.out
+    assert "\x1b[1;96m'question' coordinates\x1b[0m" not in captured.out
+    assert "\x1b[1;96m'A' coordinates\x1b[0m" not in captured.out
+    assert "\x1b[1;96m'uni2E2E' coordinates\x1b[0m" not in captured.out
 
     assert "'.notdef' coordinates" in captured.out
     assert "'space' coordinates" in captured.out

@@ -67,7 +67,7 @@ def test_path_run_single_glyph_non_composite_default(capsys, monkeypatch):
     captured = capsys.readouterr()
     # must be in a tty to get ANSI color output
     # this is mocked above
-    assert "\x1b[1;36m'A' path\x1b[0m" in captured.out
+    assert "\x1b[1;96m'A' path\x1b[0m" in captured.out
     assert "path.moveTo(869, 377)" in captured.out
 
 
@@ -85,7 +85,7 @@ def test_path_run_single_glyph_non_composite_nocolor_with_option(capsys, monkeyp
     # must be in a tty to get ANSI color output
     # this is mocked above and ANSI color should be off
     # due to command line flag
-    assert "\x1b[1;36m'A' path\x1b[0m" not in captured.out
+    assert "\x1b[1;96m'A' path\x1b[0m" not in captured.out
     assert "'A' path" in captured.out
     assert "path.moveTo(869, 377)" in captured.out
 
@@ -98,7 +98,7 @@ def test_path_run_single_glyph_non_composite_nocolor_when_not_tty(capsys):
     # must be in a tty to get ANSI color output
     # this is not mocked in this test and there should be no
     # color in non-tty test setting
-    assert "\x1b[1;36m'A' path\x1b[0m" not in captured.out
+    assert "\x1b[1;96m'A' path\x1b[0m" not in captured.out
     assert "'A' path" in captured.out
     assert "path.moveTo(869, 377)" in captured.out
 
@@ -116,7 +116,7 @@ def test_path_run_single_glyph_composite_default(capsys, monkeypatch):
     captured = capsys.readouterr()
     # must be in a tty to get ANSI color output
     # this is mocked above
-    assert "\x1b[1;36m'Scedilla' path\x1b[0m" in captured.out
+    assert "\x1b[1;96m'Scedilla' path\x1b[0m" in captured.out
     assert "path.quadTo(728, -66, 699, -61)" in captured.out
 
 
@@ -133,7 +133,7 @@ def test_path_run_single_glyph_composite_nocolor_with_option(capsys, monkeypatch
     captured = capsys.readouterr()
     # must be in a tty to get ANSI color output
     # this is mocked above
-    assert "\x1b[1;36m'Scedilla' path\x1b[0m" not in captured.out
+    assert "\x1b[1;96m'Scedilla' path\x1b[0m" not in captured.out
     assert "'Scedilla' path" in captured.out
     assert "path.quadTo(728, -66, 699, -61)" in captured.out
 
@@ -145,7 +145,7 @@ def test_path_run_single_glyph_composite_nocolor_when_not_tty(capsys):
     captured = capsys.readouterr()
     # must be in a tty to get ANSI color output
     # this is mocked above
-    assert "\x1b[1;36m'Scedilla' path\x1b[0m" not in captured.out
+    assert "\x1b[1;96m'Scedilla' path\x1b[0m" not in captured.out
     assert "'Scedilla' path" in captured.out
     assert "path.quadTo(728, -66, 699, -61)" in captured.out
 
@@ -163,7 +163,7 @@ def test_path_run_single_glyph_no_contours_default(capsys, monkeypatch):
     captured = capsys.readouterr()
     # must be in a tty to get ANSI color output
     # this is mocked above
-    assert "\x1b[1;36m'.notdef' path\x1b[0m" in captured.out
+    assert "\x1b[1;96m'.notdef' path\x1b[0m" in captured.out
     assert "No contours" in captured.out
 
 
@@ -201,7 +201,7 @@ def test_path_run_full_glyph_set_default(capsys, monkeypatch):
     # must be in a tty to get ANSI color output
     # this is mocked above
     for glyphname in expected_glyphnames:
-        assert f"\x1b[1;36m'{glyphname}' path\x1b[0m" in captured.out
+        assert f"\x1b[1;96m'{glyphname}' path\x1b[0m" in captured.out
 
     assert "path.moveTo(869, 377)" in captured.out
 
@@ -240,7 +240,7 @@ def test_path_run_full_glyph_set_nocolor_flag(capsys, monkeypatch):
     # must be in a tty to get ANSI color output
     # this is mocked above
     for glyphname in expected_glyphnames:
-        assert f"\x1b[1;36m'{glyphname}' path\x1b[0m" not in captured.out
+        assert f"\x1b[1;96m'{glyphname}' path\x1b[0m" not in captured.out
         assert f"'{glyphname}' path" in captured.out
 
     assert "path.moveTo(869, 377)" in captured.out

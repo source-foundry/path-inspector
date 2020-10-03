@@ -90,7 +90,7 @@ def test_contours_run_single_glyph_noncomposite_default(capsys, monkeypatch):
     captured = capsys.readouterr()
     # must be in a tty to get ANSI color output
     # this is mocked above
-    assert "[ \x1b[1;36mA\x1b[0m ]: 2" in captured.out
+    assert "[ \x1b[1;96mA\x1b[0m ]: 2" in captured.out
 
 
 def test_contours_run_single_glyph_noncomposite_nocolor(capsys, monkeypatch):
@@ -122,7 +122,7 @@ def test_contours_run_single_glyph_composite_default(capsys, monkeypatch):
     captured = capsys.readouterr()
     # must be in a tty to get ANSI color output
     # this is mocked above
-    assert "[ \x1b[1;36muni2E2E\x1b[0m ]: 2" in captured.out
+    assert "[ \x1b[1;96muni2E2E\x1b[0m ]: 2" in captured.out
 
 
 def test_contours_run_single_glyph_composite_nocolor(capsys, monkeypatch):
@@ -154,12 +154,12 @@ def test_contours_run_multi_glyph_composite_default(capsys, monkeypatch):
     captured = capsys.readouterr()
     # must be in a tty to get ANSI color output
     # this is mocked above
-    assert "[ \x1b[1;36m.notdef\x1b[0m ]: 0" in captured.out
-    assert "[ \x1b[1;36mspace\x1b[0m ]: 0" in captured.out
-    assert "[ \x1b[1;36mcomma\x1b[0m ]: 1" in captured.out
-    assert "[ \x1b[1;36mquestion\x1b[0m ]: 2" in captured.out
-    assert "[ \x1b[1;36mA\x1b[0m ]: 2" in captured.out
-    assert "[ \x1b[1;36muni2E2E\x1b[0m ]: 2" in captured.out
+    assert "[ \x1b[1;96m.notdef\x1b[0m ]: 0" in captured.out
+    assert "[ \x1b[1;96mspace\x1b[0m ]: 0" in captured.out
+    assert "[ \x1b[1;96mcomma\x1b[0m ]: 1" in captured.out
+    assert "[ \x1b[1;96mquestion\x1b[0m ]: 2" in captured.out
+    assert "[ \x1b[1;96mA\x1b[0m ]: 2" in captured.out
+    assert "[ \x1b[1;96muni2E2E\x1b[0m ]: 2" in captured.out
 
 
 def test_contours_run_multi_glyph_composite_nocolor(capsys, monkeypatch):

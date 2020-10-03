@@ -71,7 +71,7 @@ def test_direction_run_single_glyph_non_composite_no_contours_default(
     captured = capsys.readouterr()
     # must be in a tty to get ANSI color output
     # this is mocked above
-    assert "[ \x1b[1;36m.notdef\x1b[0m ]: no contours" in captured.out
+    assert "[ \x1b[1;96m.notdef\x1b[0m ]: no contours" in captured.out
 
 
 def test_direction_run_single_glyph_non_composite_no_contours_nocolor(
@@ -92,9 +92,7 @@ def test_direction_run_single_glyph_non_composite_no_contours_nocolor(
     assert "[ .notdef ]: no contours" in captured.out
 
 
-def test_direction_run_single_glyph_non_composite_clockwise_default(
-    capsys, monkeypatch
-):
+def test_direction_run_single_glyph_non_composite_clockwise_default(capsys, monkeypatch):
     def mock_isatty():
         return True
 
@@ -107,12 +105,10 @@ def test_direction_run_single_glyph_non_composite_clockwise_default(
     captured = capsys.readouterr()
     # must be in a tty to get ANSI color output
     # this is mocked above
-    assert "[ \x1b[1;36mA\x1b[0m ]: clockwise" in captured.out
+    assert "[ \x1b[1;96mA\x1b[0m ]: clockwise" in captured.out
 
 
-def test_dierection_run_single_glyph_non_composite_clockwise_nocolor(
-    capsys, monkeypatch
-):
+def test_dierection_run_single_glyph_non_composite_clockwise_nocolor(capsys, monkeypatch):
     def mock_isatty():
         return True
 
@@ -143,7 +139,7 @@ def test_direction_run_single_glyph_composite_counter_clockwise_default(
     captured = capsys.readouterr()
     # must be in a tty to get ANSI color output
     # this is mocked above
-    assert "[ \x1b[1;36muni2E2E\x1b[0m ]: counter-clockwise" in captured.out
+    assert "[ \x1b[1;96muni2E2E\x1b[0m ]: counter-clockwise" in captured.out
     assert "with component 'question' transform: [[-1.0, 0], [0, 1.0]]" in captured.out
 
 
@@ -181,12 +177,12 @@ def test_direction_run_full_glyph_default(capsys, monkeypatch):
     direction_run(args)
 
     captured = capsys.readouterr()
-    assert "[ \x1b[1;36m.notdef\x1b[0m ]: no contours" in captured.out
-    assert "[ \x1b[1;36mspace\x1b[0m ]: no contours" in captured.out
-    assert "[ \x1b[1;36mcomma\x1b[0m ]: clockwise" in captured.out
-    assert "[ \x1b[1;36mquestion\x1b[0m ]: clockwise" in captured.out
-    assert "[ \x1b[1;36mA\x1b[0m ]: clockwise" in captured.out
-    assert "[ \x1b[1;36muni2E2E\x1b[0m ]: counter-clockwise" in captured.out
+    assert "[ \x1b[1;96m.notdef\x1b[0m ]: no contours" in captured.out
+    assert "[ \x1b[1;96mspace\x1b[0m ]: no contours" in captured.out
+    assert "[ \x1b[1;96mcomma\x1b[0m ]: clockwise" in captured.out
+    assert "[ \x1b[1;96mquestion\x1b[0m ]: clockwise" in captured.out
+    assert "[ \x1b[1;96mA\x1b[0m ]: clockwise" in captured.out
+    assert "[ \x1b[1;96muni2E2E\x1b[0m ]: counter-clockwise" in captured.out
     assert (
         "          with component 'question' transform: [[-1.0, 0], [0, 1.0]]"
         in captured.out
