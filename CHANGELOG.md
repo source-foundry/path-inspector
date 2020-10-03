@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.3.1
+
+- source cleanup
+- remove report module
+- remove unnecessary import statements
+- fix README typo
+
 ## v0.3.0
 
 - add `coordinates` sub-command with path begin, on-curve, off-curve, and end coordinate reporting
