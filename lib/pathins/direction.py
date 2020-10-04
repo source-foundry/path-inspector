@@ -93,6 +93,12 @@ def _get_components_with_transforms(glyph: Glyph) -> Sequence[Tuple]:
     if glyph.isComposite():
         for component in glyph.components:
             if hasattr(component, "transform"):
+                # transform attribute will include one of the
+                # following data sets:
+                # (1) simple X and Y scale only @ [0][0]
+                # (2) x-scale @ [0][0] and y-scale @ [1][1]
+                # (3) x-scale @ [0][0], scale01 @ [0][1],
+                #     y-scale @ [1][1], scale 10 @ [1][0]
                 a1 = round(component.transform[0][0], 3)
                 a2 = round(component.transform[0][1], 3)
                 b1 = round(component.transform[1][0], 3)
