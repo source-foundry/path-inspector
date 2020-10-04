@@ -1,7 +1,6 @@
 import math
 from typing import Tuple
 
-
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
 # Point math
