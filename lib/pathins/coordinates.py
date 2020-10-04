@@ -47,9 +47,7 @@ def coordinates_run(args: argparse.Namespace) -> None:
             glyph = skia_path_to_ttfont_glyph(ttfont_glyph_to_skia_path(glyphname, tt))
 
         print(report_header(f"'{glyphname}' coordinates", nocolor=args.nocolor))
-        sys.stdout.write(
-            coordinates_report(glyphname, glyph, glyf_table, nocolor=args.nocolor)
-        )
+        sys.stdout.write(coordinates_report(glyph, glyf_table, nocolor=args.nocolor))
     else:
         glyph_names = tt.getGlyphOrder()
         len_glyph_names = len(glyph_names)
@@ -63,19 +61,13 @@ def coordinates_run(args: argparse.Namespace) -> None:
                 )
 
             print(report_header(f"'{local_glyphname}' coordinates", nocolor=args.nocolor))
-            sys.stdout.write(
-                coordinates_report(
-                    local_glyphname, glyph, glyf_table, nocolor=args.nocolor
-                )
-            )
+            sys.stdout.write(coordinates_report(glyph, glyf_table, nocolor=args.nocolor))
             if x + 1 < len_glyph_names:
                 # append a newline to all glyph reports except last
                 print("")
 
 
-def coordinates_report(
-    glyphname: str, glyph: Glyph, glyf_table: Any, nocolor: bool
-) -> str:
+def coordinates_report(glyph: Glyph, glyf_table: Any, nocolor: bool) -> str:
     """
     Returns a coordinates report string from glyph-level parameter
     data.
