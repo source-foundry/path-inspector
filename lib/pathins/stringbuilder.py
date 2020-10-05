@@ -27,7 +27,7 @@ def cyan_text(text: str, nocolor: bool = False) -> str:
     """
     Returns cyan ANSI escape code colored text string
     """
-    if not nocolor:
+    if not nocolor and sys.stdout.isatty():
         return f"{cyan_start}{text}{reset}"
     else:
         return text
@@ -38,7 +38,7 @@ def cyan_bright_text(text: str, nocolor: bool = False) -> str:
     Returns cyan ANSI escape code colored text string
     with bold weight
     """
-    if not nocolor:
+    if not nocolor and sys.stdout.isatty():
         return f"{bright_cyan_start}{text}{reset}"
     else:
         return text
@@ -48,7 +48,7 @@ def green_text(text: str, nocolor: bool = False) -> str:
     """
     Returns green ANSI escape code colored text string
     """
-    if not nocolor:
+    if not nocolor and sys.stdout.isatty():
         return f"{green_start}{text}{reset}"
     else:
         return text
@@ -58,7 +58,7 @@ def red_text(text: str, nocolor: bool = False) -> str:
     """
     Returns red ANSI escape code colored text string
     """
-    if not nocolor:
+    if not nocolor and sys.stdout.isatty():
         return f"{red_start}{text}{reset}"
     else:
         return text
