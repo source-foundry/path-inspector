@@ -35,7 +35,7 @@ test-lint:
 	flake8 --ignore=W50 lib/pathins
 
 test-type-check:
-	mypy lib/pathins
+	mypy --pretty lib/pathins
 
 test-unit:
 	tox
