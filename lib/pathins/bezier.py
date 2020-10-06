@@ -1,9 +1,9 @@
-from .math import midpoint_between_coordinates
 from typing import Any, List
 
 from fontTools.ttLib.tables._g_l_y_f import Glyph  # type: ignore
 
 from .datastructures import Coordinate
+from .math import midpoint_between_coordinates
 
 FLAG_ON_CURVE = 0x01
 

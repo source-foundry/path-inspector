@@ -1,9 +1,9 @@
 import argparse
 from typing import List
 
+from fontTools.misc.bezierTools import calcQuadraticArcLength  # type: ignore
 from fontTools.ttLib import TTFont  # type: ignore
 from fontTools.ttLib.tables._g_l_y_f import Glyph  # type: ignore
-from fontTools.misc.bezierTools import calcQuadraticArcLength  # type: ignore
 
 from .bezier import quadratic_path
 from .bridge import skia_path_to_ttfont_glyph, ttfont_glyph_to_skia_path
