@@ -5,5 +5,5 @@
 #    pip-compile
 #
 cython==0.29.21           # via -r requirements.in
-fonttools==4.16.0         # via -r requirements.in
+fonttools==4.16.1         # via -r requirements.in
 skia-pathops==0.5.1       # via -r requirements.in
