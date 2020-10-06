@@ -34,6 +34,20 @@ def round_point(pt: float) -> int:
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
+def linear_distance_between_coordinates(
+    coord1: Tuple[int, int], coord2: Tuple[int, int]
+) -> float:
+    """
+    Returns the linear distance between two sets of
+    Cartesian coordinate values.
+    """
+    x1, y1 = coord1
+    x2, y2 = coord2
+    x_diff_squared = (x2 - x1) ** 2
+    y_diff_squared = (y2 - y1) ** 2
+    return math.sqrt(x_diff_squared + y_diff_squared)
+
+
 def midpoint_between_coordinates(
     coord1: Tuple[int, int], coord2: Tuple[int, int]
 ) -> Tuple[int, int]:
