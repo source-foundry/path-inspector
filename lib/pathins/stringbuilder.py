@@ -18,11 +18,22 @@ ansicolors: Dict[Text, Text] = {
     "RESET": "\033[0m",
 }
 
+bold_start: Text = ansicolors["BOLD"]
 green_start: Text = ansicolors["GREEN"]
 red_start: Text = ansicolors["RED"]
 cyan_start: Text = ansicolors["CYAN"]
 bright_cyan_start: Text = ansicolors["BRIGHT_BOLD_CYAN"]
 reset: Text = ansicolors["RESET"]
+
+
+def bold_text(text: str, nocolor: bool = False) -> str:
+    """
+    Returns bold text ANSI escape code text string
+    """
+    if not nocolor and sys.stdout.isatty():
+        return f"{bold_start}{text}{reset}"
+    else:
+        return text
 
 
 def cyan_text(text: str, nocolor: bool = False) -> str:
