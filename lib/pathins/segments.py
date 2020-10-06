@@ -1,4 +1,5 @@
 import argparse
+import os
 from typing import List
 
 from fontTools.misc.bezierTools import calcQuadraticArcLength  # type: ignore
@@ -76,6 +77,7 @@ def segments_run(args: argparse.Namespace) -> None:
 
 def _print_segments(coords: List[Coordinate], nocolor: bool) -> None:
     start_coord = None
+    total_distance: float = 0.0
     for coord in coords:
         # keep start coordinate for calculation of final
         # contour point distances as curve is closed
@@ -99,6 +101,7 @@ def _print_segments(coords: List[Coordinate], nocolor: bool) -> None:
                         distance,
                         nocolor,
                     )
+                    total_distance += distance
                     print(line_string)
                 else:
                     pass
@@ -111,6 +114,7 @@ def _print_segments(coords: List[Coordinate], nocolor: bool) -> None:
                     (coord.x, coord.y), (start_coord.x, start_coord.y)
                 )
                 line_string = segment_line(coord, start_coord, distance, nocolor)
+                total_distance += distance
                 print(line_string)
         # we have an off-curve point
         else:
@@ -123,6 +127,7 @@ def _print_segments(coords: List[Coordinate], nocolor: bool) -> None:
                 qcurve_string = segment_quadratic_curve(
                     coord.coord_previous, coord, start_coord, distance, nocolor
                 )
+                total_distance += distance
                 print(qcurve_string)
             elif coord.coord_previous and coord.coord_next:
                 assert coord.coord_previous.oncurve is True
@@ -139,4 +144,7 @@ def _print_segments(coords: List[Coordinate], nocolor: bool) -> None:
                     distance,
                     nocolor,
                 )
+                total_distance += distance
                 print(qcurve_string)
+
+    print(f"{os.linesep} Total: {round(total_distance, 2): .2f} units")
