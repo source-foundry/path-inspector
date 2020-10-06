@@ -2,6 +2,8 @@ import os
 import sys
 from typing import Dict, Sequence, Text, Tuple
 
+from .datastructures import Coordinate
+
 ansicolors: Dict[Text, Text] = {
     "BLACK": "\033[30m",
     "RED": "\033[31m",
@@ -153,3 +155,68 @@ def _transformed_component(components_with_transforms: Sequence[Tuple]) -> str:
         return components_string
     else:
         return ""
+
+
+def segment_line(
+    coord1: Coordinate, coord2: Coordinate, distance: float, nocolor: bool
+) -> str:
+    if not nocolor and sys.stdout.isatty():
+        # color coord1 start and end points
+        if coord1.startpoint:
+            coordinates1 = f"{green_start}({coord1.x},{coord1.y}){reset}"
+        elif coord1.endpoint:
+            coordinates1 = f"{red_start}({coord1.x},{coord1.y}){reset}"
+        else:
+            coordinates1 = f"({coord1.x},{coord1.y})"
+
+        # color coord2 start points (end of curve)
+        if coord2.startpoint:
+            coordinates2 = f"{green_start}({coord2.x},{coord2.y}){reset}"
+        else:
+            coordinates2 = f"({coord2.x},{coord2.y})"
+
+        return (
+            f"{coordinates1} {coordinates2}: "
+            f"{cyan_bright_text('LINE')} {round(distance, 2): .2f} units"
+        )
+    else:
+        return (
+            f"({coord1.x},{coord1.y}) ({coord2.x},{coord2.y}): "
+            f"LINE {round(distance, 2): .2f} units"
+        )
+
+
+def segment_quadratic_curve(
+    coord1: Coordinate,
+    coord2: Coordinate,
+    coord3: Coordinate,
+    distance: float,
+    nocolor: bool,
+) -> str:
+    if not nocolor and sys.stdout.isatty():
+        if coord1.startpoint:
+            coordinates1 = f"{green_start}({coord1.x},{coord1.y}){reset}"
+        elif coord1.endpoint:
+            coordinates1 = f"{red_start}({coord1.x},{coord1.y}){reset}"
+        else:
+            coordinates1 = f"({coord1.x},{coord1.y})"
+
+        if coord2.endpoint:
+            coordinates2 = f"{red_start}({coord2.x},{coord2.y}){reset}"
+        else:
+            coordinates2 = f"({coord2.x},{coord2.y})"
+
+        if coord3.startpoint:
+            coordinates3 = f"{green_start}({coord3.x},{coord3.y}){reset}"
+        else:
+            coordinates3 = f"({coord3.x},{coord3.y})"
+
+        return (
+            f"{coordinates1} {coordinates2} {coordinates3} "
+            f"{cyan_bright_text('QCURVE')} {round(distance, 2): .2f} units"
+        )
+    else:
+        return (
+            f"({coord1.x},{coord1.y}) ({coord2.x},{coord2.y}) ({coord3.x},{coord3.y}) "
+            f"QCURVE {round(distance, 2): .2f} units"
+        )

@@ -9,6 +9,7 @@ from .contours import contours_run
 from .coordinates import coordinates_run
 from .direction import direction_run
 from .path import path_run
+from .segments import segments_run
 
 # from .overlap import overlap_run
 
@@ -117,6 +118,22 @@ def run(argv) -> None:
         "glyphname", type=str, help="glyph name (optional, default=all)", nargs="?"
     )
     parser_path.set_defaults(func=path_run)
+
+    # -----------------------------
+    # segments sub-command parser
+    # -----------------------------
+    parser_segments = subparsers.add_parser(
+        "segments", help="Path segment inspection", description="Path segment inspection"
+    )
+    parser_segments.add_argument(
+        "-v", "--version", action="version", version=f"pathins v{__version__}"
+    )
+    parser_segments.add_argument("--nocolor", action="store_true", help="no ANSI color")
+    parser_segments.add_argument("fontpath", type=str, help="font file path")
+    parser_segments.add_argument(
+        "glyphname", type=str, help="glyph name (optional, default=all)", nargs="?"
+    )
+    parser_segments.set_defaults(func=segments_run)
 
     # -----------------------------
     # Parse args
