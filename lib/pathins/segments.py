@@ -10,7 +10,8 @@ from .bezier import quadratic_path
 from .bridge import skia_path_to_ttfont_glyph, ttfont_glyph_to_skia_path
 from .datastructures import Coordinate
 from .math import linear_distance_between_coordinates
-from .stringbuilder import report_header, segment_line, segment_quadratic_curve
+from .stringbuilder import (bold_text, report_header, segment_line,
+                            segment_quadratic_curve)
 from .validators import validate_fontpath, validate_glyph_in_font
 
 
@@ -147,4 +148,4 @@ def _print_segments(coords: List[Coordinate], nocolor: bool) -> None:
                 total_distance += distance
                 print(qcurve_string)
 
-    print(f"{os.linesep} Total: {round(total_distance, 2): .2f} units")
+    print(f"{os.linesep} {bold_text('Total')}: {round(total_distance, 2): .2f} units")
