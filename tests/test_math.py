@@ -1,6 +1,5 @@
-import pytest
-
 import pathins.math
+import pytest
 
 #
 # pathins.math.round_point

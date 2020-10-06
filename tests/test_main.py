@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import pytest
-
 from pathins.__main__ import run
 
 

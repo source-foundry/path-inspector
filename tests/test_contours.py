@@ -2,9 +2,8 @@ import argparse
 import os
 import sys
 
-from fontTools.ttLib import TTFont
 import pytest
-
+from fontTools.ttLib import TTFont
 from pathins.contours import contours_run, number_of_contours
 
 TESTFONT_PATH_1 = os.path.join(

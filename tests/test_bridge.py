@@ -1,9 +1,7 @@
 import os
 
 import pytest
-
 from fontTools.ttLib import TTFont
-
 from pathins.bridge import skia_path_to_ttfont_glyph, ttfont_glyph_to_skia_path
 
 TESTFONT_PATH_1 = os.path.join("tests", "testfiles", "fonts", "RobotoMono-subset1.ttf")

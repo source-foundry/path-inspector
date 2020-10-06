@@ -3,7 +3,6 @@ import os
 import sys
 
 import pytest
-
 from pathins.coordinates import coordinates_run
 
 TESTFONT_PATH_1 = os.path.join(

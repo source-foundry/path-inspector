@@ -3,7 +3,6 @@ import os
 import sys
 
 import pytest
-
 from pathins.path import path_run
 
 TESTFONT_PATH_1 = os.path.join("tests", "testfiles", "fonts", "RobotoMono-subset1.ttf")
