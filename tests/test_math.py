@@ -1,3 +1,5 @@
+import math
+
 import pathins.math
 import pytest
 
@@ -19,6 +21,26 @@ def test_round_point():
 
     for test in tests:
         assert pathins.math.round_point(test[0]) == test[1]
+
+
+#
+# pathins.math.midpoint_between_coordinates
+#
+
+
+def test_linear_distance_between_coordinates():
+    tests = (
+        [(0, 0), (40, 0), 40],
+        [(0, 0), (0, 40), 40],
+        [(0, 0), (10, 10), 14.1421356],
+        [(0, 0), (0, 0), 0],
+        [(0, 0), (-40, 0), 40],
+        [(0, 0), (-10, -10), 14.1421356],
+    )
+
+    for test in tests:
+        test_result = pathins.math.linear_distance_between_coordinates(test[0], test[1])
+        assert math.isclose(test_result, test[2], rel_tol=1e-3) is True
 
 
 #
