@@ -10,8 +10,7 @@ from .bezier import quadratic_path
 from .bridge import skia_path_to_ttfont_glyph, ttfont_glyph_to_skia_path
 from .datastructures import Coordinate
 from .math import linear_distance_between_coordinates
-from .stringbuilder import (bold_text, report_header, segment_line,
-                            segment_quadratic_curve)
+from .stringbuilder import bold_text, report_header, segment_line, segment_quadratic_curve
 from .validators import validate_fontpath, validate_glyph_in_font
 
 
