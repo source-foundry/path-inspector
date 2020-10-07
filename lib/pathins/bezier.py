@@ -11,6 +11,22 @@ FLAG_ON_CURVE = 0x01
 def quadratic_path(
     glyph: Glyph, glyf_table: Any, include_implied=False
 ) -> List[Coordinate]:
+    """
+    Returns a list of datastructure.Coordinate objects for
+    a quadratic curve path without implied on-curve points
+    by default. Implied on-curve points are calculated and
+    added to the path when the include_implied parameter is
+    set to `True`.
+
+    Note: composite fontTools.ttLib.tables._g_l_y_f.Glyph
+    *must* be decomposed before they are passed to this
+    function.
+
+    See https://stackoverflow.com/a/20772557/2848172 for
+    detailed information about implied on-curve points, loss
+    of information, and the TTF binary quadratic curve
+    specification.
+    """
     coords, endpoints, flags = glyph.getCoordinates(glyf_table)
     endpoint_coordinates = [coords[endpoint] for endpoint in endpoints]
     new_coords: List[Coordinate] = []
