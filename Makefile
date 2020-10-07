@@ -13,7 +13,7 @@ dist-push:
 	twine upload dist/*.whl dist/*.tar.gz
 
 import-sort:
-	isort lib/pathins
+	isort -l 90 lib/pathins
 
 install:
 	pip3 install --ignore-installed -r requirements.txt .
