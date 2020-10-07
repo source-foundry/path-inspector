@@ -36,6 +36,26 @@ class Coordinate(object):
         )
         return obj_str
 
+    def __eq__(self, other):
+        return (
+            self.x == other.x
+            and self.y == other.y
+            and self.oncurve == other.oncurve
+            and self.startpoint == other.startpoint
+            and self.endpoint == other.endpoint
+            and self.implied == other.implied
+        )
+
+    def __ne__(self, other):
+        return (
+            self.x != other.x
+            or self.y != other.y
+            or self.oncurve != other.oncurve
+            or self.startpoint != other.startpoint
+            or self.endpoint != other.endpoint
+            or self.implied != other.implied
+        )
+
     def set_coord_next(self, coord: Optional["Coordinate"]) -> None:
         self.coord_next = coord
 
