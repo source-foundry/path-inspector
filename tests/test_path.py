@@ -4,6 +4,7 @@ import sys
 
 import pytest
 from pathins.path import path_run
+import pathins.stringbuilder
 
 TESTFONT_PATH_1 = os.path.join("tests", "testfiles", "fonts", "RobotoMono-subset1.ttf")
 
@@ -58,7 +59,7 @@ def test_path_run_single_glyph_non_composite_default(capsys, monkeypatch):
         return True
 
     # apply the monkeypatch for sys.stdout.isatty()
-    monkeypatch.setattr(sys.stdout, "isatty", mock_isatty)
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
 
     args = parser.parse_args([TESTFONT_PATH_1, "A"])
     path_run(args)
@@ -74,8 +75,7 @@ def test_path_run_single_glyph_non_composite_nocolor_with_option(capsys, monkeyp
     def mock_isatty():
         return True
 
-    # apply the monkeypatch for sys.stdout.isatty()
-    monkeypatch.setattr(sys.stdout, "isatty", mock_isatty)
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
 
     args = parser.parse_args(["--nocolor", TESTFONT_PATH_1, "A"])
     path_run(args)
@@ -106,8 +106,7 @@ def test_path_run_single_glyph_composite_default(capsys, monkeypatch):
     def mock_isatty():
         return True
 
-    # apply the monkeypatch for sys.stdout.isatty()
-    monkeypatch.setattr(sys.stdout, "isatty", mock_isatty)
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
 
     args = parser.parse_args([TESTFONT_PATH_1, "Scedilla"])
     path_run(args)
@@ -123,8 +122,7 @@ def test_path_run_single_glyph_composite_nocolor_with_option(capsys, monkeypatch
     def mock_isatty():
         return True
 
-    # apply the monkeypatch for sys.stdout.isatty()
-    monkeypatch.setattr(sys.stdout, "isatty", mock_isatty)
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
 
     args = parser.parse_args(["--nocolor", TESTFONT_PATH_1, "Scedilla"])
     path_run(args)
@@ -153,8 +151,7 @@ def test_path_run_single_glyph_no_contours_default(capsys, monkeypatch):
     def mock_isatty():
         return True
 
-    # apply the monkeypatch for sys.stdout.isatty()
-    monkeypatch.setattr(sys.stdout, "isatty", mock_isatty)
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
 
     args = parser.parse_args([TESTFONT_PATH_1, ".notdef"])
     path_run(args)
@@ -190,8 +187,7 @@ def test_path_run_full_glyph_set_default(capsys, monkeypatch):
     def mock_isatty():
         return True
 
-    # apply the monkeypatch for sys.stdout.isatty()
-    monkeypatch.setattr(sys.stdout, "isatty", mock_isatty)
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
 
     args = parser.parse_args([TESTFONT_PATH_1])
     path_run(args)
@@ -229,8 +225,7 @@ def test_path_run_full_glyph_set_nocolor_flag(capsys, monkeypatch):
     def mock_isatty():
         return True
 
-    # apply the monkeypatch for sys.stdout.isatty()
-    monkeypatch.setattr(sys.stdout, "isatty", mock_isatty)
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
 
     args = parser.parse_args(["--nocolor", TESTFONT_PATH_1])
     path_run(args)

@@ -4,6 +4,7 @@ import sys
 
 import pytest
 from pathins.coordinates import coordinates_run
+import pathins.stringbuilder
 
 TESTFONT_PATH_1 = os.path.join(
     "tests", "testfiles", "fonts", "NotoSans-Regular.subset1.ttf"
@@ -65,8 +66,7 @@ def test_coordinates_run_single_glyph_noncomposite_default(capsys, monkeypatch):
     def mock_isatty():
         return True
 
-    # apply the monkeypatch for sys.stdout.isatty()
-    monkeypatch.setattr(sys.stdout, "isatty", mock_isatty)
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
 
     args = parser.parse_args([TESTFONT_PATH_1, "A"])
     coordinates_run(args)
@@ -93,8 +93,7 @@ def test_coordinates_run_single_glyph_noncomposite_nocolor(capsys, monkeypatch):
     def mock_isatty():
         return True
 
-    # apply the monkeypatch for sys.stdout.isatty()
-    monkeypatch.setattr(sys.stdout, "isatty", mock_isatty)
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
 
     args = parser.parse_args(["--nocolor", TESTFONT_PATH_1, "A"])
     coordinates_run(args)
@@ -131,8 +130,7 @@ def test_coordinates_run_single_glyph_composite_default(capsys, monkeypatch):
     def mock_isatty():
         return True
 
-    # apply the monkeypatch for sys.stdout.isatty()
-    monkeypatch.setattr(sys.stdout, "isatty", mock_isatty)
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
 
     args = parser.parse_args([TESTFONT_PATH_1, "uni2E2E"])
     coordinates_run(args)
@@ -164,8 +162,7 @@ def test_coordinates_run_single_glyph_composite_nocolor(capsys, monkeypatch):
     def mock_isatty():
         return True
 
-    # apply the monkeypatch for sys.stdout.isatty()
-    monkeypatch.setattr(sys.stdout, "isatty", mock_isatty)
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
 
     args = parser.parse_args(["--nocolor", TESTFONT_PATH_1, "uni2E2E"])
     coordinates_run(args)
@@ -198,8 +195,7 @@ def test_coordinates_run_multi_glyph_default(capsys, monkeypatch):
     def mock_isatty():
         return True
 
-    # apply the monkeypatch for sys.stdout.isatty()
-    monkeypatch.setattr(sys.stdout, "isatty", mock_isatty)
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
 
     args = parser.parse_args([TESTFONT_PATH_1])
     coordinates_run(args)
@@ -266,8 +262,7 @@ def test_coordinates_run_multi_glyph_nocolor(capsys, monkeypatch):
     def mock_isatty():
         return True
 
-    # apply the monkeypatch for sys.stdout.isatty()
-    monkeypatch.setattr(sys.stdout, "isatty", mock_isatty)
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
 
     args = parser.parse_args(["--nocolor", TESTFONT_PATH_1])
     coordinates_run(args)

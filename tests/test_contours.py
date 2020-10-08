@@ -5,6 +5,7 @@ import sys
 import pytest
 from fontTools.ttLib import TTFont
 from pathins.contours import contours_run, number_of_contours
+import pathins.stringbuilder
 
 TESTFONT_PATH_1 = os.path.join(
     "tests", "testfiles", "fonts", "NotoSans-Regular.subset1.ttf"
@@ -80,8 +81,7 @@ def test_contours_run_single_glyph_noncomposite_default(capsys, monkeypatch):
     def mock_isatty():
         return True
 
-    # apply the monkeypatch for sys.stdout.isatty()
-    monkeypatch.setattr(sys.stdout, "isatty", mock_isatty)
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
 
     args = parser.parse_args([TESTFONT_PATH_1, "A"])
     contours_run(args)
@@ -96,8 +96,7 @@ def test_contours_run_single_glyph_noncomposite_nocolor(capsys, monkeypatch):
     def mock_isatty():
         return True
 
-    # apply the monkeypatch for sys.stdout.isatty()
-    monkeypatch.setattr(sys.stdout, "isatty", mock_isatty)
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
 
     args = parser.parse_args(["--nocolor", TESTFONT_PATH_1, "A"])
     contours_run(args)
@@ -112,8 +111,7 @@ def test_contours_run_single_glyph_composite_default(capsys, monkeypatch):
     def mock_isatty():
         return True
 
-    # apply the monkeypatch for sys.stdout.isatty()
-    monkeypatch.setattr(sys.stdout, "isatty", mock_isatty)
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
 
     args = parser.parse_args([TESTFONT_PATH_1, "uni2E2E"])
     contours_run(args)
@@ -128,8 +126,7 @@ def test_contours_run_single_glyph_composite_nocolor(capsys, monkeypatch):
     def mock_isatty():
         return True
 
-    # apply the monkeypatch for sys.stdout.isatty()
-    monkeypatch.setattr(sys.stdout, "isatty", mock_isatty)
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
 
     args = parser.parse_args(["--nocolor", TESTFONT_PATH_1, "uni2E2E"])
     contours_run(args)
@@ -144,8 +141,7 @@ def test_contours_run_multi_glyph_composite_default(capsys, monkeypatch):
     def mock_isatty():
         return True
 
-    # apply the monkeypatch for sys.stdout.isatty()
-    monkeypatch.setattr(sys.stdout, "isatty", mock_isatty)
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
 
     args = parser.parse_args([TESTFONT_PATH_1])
     contours_run(args)
@@ -165,8 +161,7 @@ def test_contours_run_multi_glyph_composite_nocolor(capsys, monkeypatch):
     def mock_isatty():
         return True
 
-    # apply the monkeypatch for sys.stdout.isatty()
-    monkeypatch.setattr(sys.stdout, "isatty", mock_isatty)
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
 
     args = parser.parse_args(["--nocolor", TESTFONT_PATH_1])
     contours_run(args)

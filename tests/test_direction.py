@@ -4,6 +4,7 @@ import sys
 
 import pytest
 from pathins.direction import direction_run
+import pathins.stringbuilder
 
 TESTFONT_PATH_1 = os.path.join(
     "tests", "testfiles", "fonts", "NotoSans-Regular.subset1.ttf"
@@ -61,8 +62,7 @@ def test_direction_run_single_glyph_non_composite_no_contours_default(
     def mock_isatty():
         return True
 
-    # apply the monkeypatch for sys.stdout.isatty()
-    monkeypatch.setattr(sys.stdout, "isatty", mock_isatty)
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
 
     args = parser.parse_args([TESTFONT_PATH_1, ".notdef"])
     direction_run(args)
@@ -79,8 +79,7 @@ def test_direction_run_single_glyph_non_composite_no_contours_nocolor(
     def mock_isatty():
         return True
 
-    # apply the monkeypatch for sys.stdout.isatty()
-    monkeypatch.setattr(sys.stdout, "isatty", mock_isatty)
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
 
     args = parser.parse_args(["--nocolor", TESTFONT_PATH_1, ".notdef"])
     direction_run(args)
@@ -95,8 +94,7 @@ def test_direction_run_single_glyph_non_composite_clockwise_default(capsys, monk
     def mock_isatty():
         return True
 
-    # apply the monkeypatch for sys.stdout.isatty()
-    monkeypatch.setattr(sys.stdout, "isatty", mock_isatty)
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
 
     args = parser.parse_args([TESTFONT_PATH_1, "A"])
     direction_run(args)
@@ -111,8 +109,7 @@ def test_dierection_run_single_glyph_non_composite_clockwise_nocolor(capsys, mon
     def mock_isatty():
         return True
 
-    # apply the monkeypatch for sys.stdout.isatty()
-    monkeypatch.setattr(sys.stdout, "isatty", mock_isatty)
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
 
     args = parser.parse_args(["--nocolor", TESTFONT_PATH_1, "A"])
     direction_run(args)
@@ -129,8 +126,7 @@ def test_direction_run_single_glyph_composite_counter_clockwise_default(
     def mock_isatty():
         return True
 
-    # apply the monkeypatch for sys.stdout.isatty()
-    monkeypatch.setattr(sys.stdout, "isatty", mock_isatty)
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
 
     args = parser.parse_args([TESTFONT_PATH_1, "uni2E2E"])
     direction_run(args)
@@ -148,8 +144,7 @@ def test_direction_run_single_glyph_composite_counter_clockwise_nocolor(
     def mock_isatty():
         return True
 
-    # apply the monkeypatch for sys.stdout.isatty()
-    monkeypatch.setattr(sys.stdout, "isatty", mock_isatty)
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
 
     args = parser.parse_args(["--nocolor", TESTFONT_PATH_1, "uni2E2E"])
     direction_run(args)
@@ -169,8 +164,7 @@ def test_direction_run_full_glyph_default(capsys, monkeypatch):
     def mock_isatty():
         return True
 
-    # apply the monkeypatch for sys.stdout.isatty()
-    monkeypatch.setattr(sys.stdout, "isatty", mock_isatty)
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
 
     args = parser.parse_args([TESTFONT_PATH_1])
     direction_run(args)
@@ -192,8 +186,7 @@ def test_direction_run_full_glyph_nocolor(capsys, monkeypatch):
     def mock_isatty():
         return True
 
-    # apply the monkeypatch for sys.stdout.isatty()
-    monkeypatch.setattr(sys.stdout, "isatty", mock_isatty)
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
 
     args = parser.parse_args(["--nocolor", TESTFONT_PATH_1])
     direction_run(args)
