@@ -25,12 +25,17 @@ cyan_start: Text = ansicolors["CYAN"]
 bright_cyan_start: Text = ansicolors["BRIGHT_BOLD_CYAN"]
 reset: Text = ansicolors["RESET"]
 
+if sys.stdout.isatty():
+    IS_A_TTY = True
+else:
+    IS_A_TTY = False
+
 
 def bold_text(text: str, nocolor: bool = False) -> str:
     """
     Returns bold text ANSI escape code text string
     """
-    if not nocolor and sys.stdout.isatty():
+    if not nocolor and IS_A_TTY:
         return f"{bold_start}{text}{reset}"
     else:
         return text
@@ -40,7 +45,7 @@ def cyan_text(text: str, nocolor: bool = False) -> str:
     """
     Returns cyan ANSI escape code colored text string
     """
-    if not nocolor and sys.stdout.isatty():
+    if not nocolor and IS_A_TTY:
         return f"{cyan_start}{text}{reset}"
     else:
         return text
@@ -51,7 +56,7 @@ def cyan_bright_text(text: str, nocolor: bool = False) -> str:
     Returns cyan ANSI escape code colored text string
     with bold weight
     """
-    if not nocolor and sys.stdout.isatty():
+    if not nocolor and IS_A_TTY:
         return f"{bright_cyan_start}{text}{reset}"
     else:
         return text
@@ -61,7 +66,7 @@ def green_text(text: str, nocolor: bool = False) -> str:
     """
     Returns green ANSI escape code colored text string
     """
-    if not nocolor and sys.stdout.isatty():
+    if not nocolor and IS_A_TTY:
         return f"{green_start}{text}{reset}"
     else:
         return text
@@ -71,7 +76,7 @@ def red_text(text: str, nocolor: bool = False) -> str:
     """
     Returns red ANSI escape code colored text string
     """
-    if not nocolor and sys.stdout.isatty():
+    if not nocolor and IS_A_TTY:
         return f"{red_start}{text}{reset}"
     else:
         return text
@@ -80,7 +85,7 @@ def red_text(text: str, nocolor: bool = False) -> str:
 def report_header(header: str, nocolor: bool = False) -> str:
     header_len = len(header) + 1
     divider_char = "-"
-    if not nocolor and sys.stdout.isatty():
+    if not nocolor and IS_A_TTY:
         header_string = (
             f"{divider_char * header_len}{os.linesep}"
             f"{bright_cyan_start}{header}{reset}{os.linesep}"
@@ -97,7 +102,7 @@ def report_header(header: str, nocolor: bool = False) -> str:
 
 def overlap_result(glyphname: str, test_pass: bool, nocolor: bool = False) -> str:
     # color
-    if not nocolor and sys.stdout.isatty():
+    if not nocolor and IS_A_TTY:
         if test_pass:
             result_pre = f"[ {red_start}{glyphname}{reset} ]: "
         else:
@@ -119,7 +124,7 @@ def direction_result(
     components_with_transforms: Sequence[Tuple] = [],
     nocolor: bool = False,
 ) -> str:
-    if not nocolor and sys.stdout.isatty():
+    if not nocolor and IS_A_TTY:
         if contours == 0:
             return f"[ {bright_cyan_start}{glyphname}{reset} ]: no contours"
         if direction_clockwise:
@@ -171,7 +176,7 @@ def _transformed_component(components_with_transforms: Sequence[Tuple]) -> str:
 def segment_line(
     coord1: Coordinate, coord2: Coordinate, distance: float, nocolor: bool
 ) -> str:
-    if not nocolor and sys.stdout.isatty():
+    if not nocolor and IS_A_TTY:
         # color coord1 start and end points
         if coord1.startpoint:
             coordinates1 = f"{green_start}({coord1.x},{coord1.y}){reset}"
@@ -204,7 +209,7 @@ def segment_quadratic_curve(
     distance: float,
     nocolor: bool,
 ) -> str:
-    if not nocolor and sys.stdout.isatty():
+    if not nocolor and IS_A_TTY:
         if coord1.startpoint:
             coordinates1 = f"{green_start}({coord1.x},{coord1.y}){reset}"
         elif coord1.endpoint:
