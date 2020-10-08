@@ -171,3 +171,105 @@ def test_report_header_nocolor(monkeypatch):
 
 #     res = pathins.stringbuilder.overlap_result("TEST", test_pass=True, nocolor=True)
 #     assert res == "[ TEST ]: Yes"
+
+
+def test_direction_result_no_contours_default(monkeypatch):
+    # mock tty
+    def mock_isatty():
+        return True
+
+    # apply the monkeypatch for sys.stdout.isatty()
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
+
+    res = pathins.stringbuilder.direction_result("TEST", True, 0, [], nocolor=False)
+    assert res == "[ \033[1;96mTEST\033[0m ]: no contours"
+
+
+def test_direction_result_no_contours_nocolor(monkeypatch):
+    # mock tty
+    def mock_isatty():
+        return True
+
+    # apply the monkeypatch for sys.stdout.isatty()
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
+
+    res = pathins.stringbuilder.direction_result("TEST", True, 0, [], nocolor=True)
+    assert res == "[ TEST ]: no contours"
+
+
+def test_direction_result_clockwise_with_component_transform(monkeypatch):
+    # mock tty
+    def mock_isatty():
+        return True
+
+    # apply the monkeypatch for sys.stdout.isatty()
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
+
+    res = pathins.stringbuilder.direction_result(
+        "TEST", True, 2, [("A", [[1.0, 0], [0, 1.0]])], nocolor=False
+    )
+    assert res == (
+        f"[ \033[1;96mTEST\033[0m ]: clockwise{os.linesep}"
+        f"          with component 'A' transform: [[1.0, 0], [0, 1.0]]"
+    )
+
+
+def test_direction_result_clockwise_with_two_components(monkeypatch):
+    # mock tty
+    def mock_isatty():
+        return True
+
+    # apply the monkeypatch for sys.stdout.isatty()
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
+
+    res = pathins.stringbuilder.direction_result(
+        "TEST",
+        True,
+        2,
+        [("A", [[1.0, 0], [0, 1.0]]), ("B", [[1.0, 0], [0, 1.0]])],
+        nocolor=False,
+    )
+    assert res == (
+        f"[ \033[1;96mTEST\033[0m ]: clockwise{os.linesep}"
+        f"          with component 'A' transform: [[1.0, 0], [0, 1.0]]{os.linesep}"
+        f"          with component 'B' transform: [[1.0, 0], [0, 1.0]]"
+    )
+
+
+def test_direction_result_counterclockwise_with_component_transform(monkeypatch):
+    # mock tty
+    def mock_isatty():
+        return True
+
+    # apply the monkeypatch for sys.stdout.isatty()
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
+
+    res = pathins.stringbuilder.direction_result(
+        "TEST", False, 2, [("A", [[1.0, 0], [0, 1.0]])], nocolor=False
+    )
+    assert res == (
+        f"[ \033[1;96mTEST\033[0m ]: counter-clockwise{os.linesep}"
+        f"          with component 'A' transform: [[1.0, 0], [0, 1.0]]"
+    )
+
+
+def test_direction_result_counterclockwise_with_two_components(monkeypatch):
+    # mock tty
+    def mock_isatty():
+        return True
+
+    # apply the monkeypatch for sys.stdout.isatty()
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
+
+    res = pathins.stringbuilder.direction_result(
+        "TEST",
+        False,
+        2,
+        [("A", [[1.0, 0], [0, 1.0]]), ("B", [[1.0, 0], [0, 1.0]])],
+        nocolor=False,
+    )
+    assert res == (
+        f"[ \033[1;96mTEST\033[0m ]: counter-clockwise{os.linesep}"
+        f"          with component 'A' transform: [[1.0, 0], [0, 1.0]]{os.linesep}"
+        f"          with component 'B' transform: [[1.0, 0], [0, 1.0]]"
+    )
