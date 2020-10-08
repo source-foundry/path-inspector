@@ -100,21 +100,21 @@ def report_header(header: str, nocolor: bool = False) -> str:
     return header_string
 
 
-def overlap_result(glyphname: str, test_pass: bool, nocolor: bool = False) -> str:
-    # color
-    if not nocolor and IS_A_TTY:
-        if test_pass:
-            result_pre = f"[ {red_start}{glyphname}{reset} ]: "
-        else:
-            result_pre = f"[ {green_start}{glyphname}{reset} ]: "
-    else:
-        result_pre = f"[{glyphname}]: "
-    # test pass indicator
-    if test_pass:
-        result = result_pre + "Yes"
-    else:
-        result = result_pre + "No"
-    return result
+# def overlap_result(glyphname: str, test_pass: bool, nocolor: bool = False) -> str:
+#     # color
+#     if not nocolor and IS_A_TTY:
+#         if test_pass:
+#             result_pre = f"[ {red_start}{glyphname}{reset} ]: "
+#         else:
+#             result_pre = f"[ {green_start}{glyphname}{reset} ]: "
+#     else:
+#         result_pre = f"[ {glyphname} ]: "
+#     # test pass indicator
+#     if test_pass:
+#         result = result_pre + "Yes"
+#     else:
+#         result = result_pre + "No"
+#     return result
 
 
 def direction_result(
