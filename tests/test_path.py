@@ -1,6 +1,5 @@
 import argparse
 import os
-import sys
 
 import pytest
 from pathins.path import path_run
