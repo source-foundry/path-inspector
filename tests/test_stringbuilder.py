@@ -1,3 +1,5 @@
+import os
+
 import pytest
 
 import pathins.stringbuilder
@@ -132,7 +134,7 @@ def test_report_header(monkeypatch):
     monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
 
     res = pathins.stringbuilder.report_header("TEST")
-    assert res == "-----\n\033[1;96mTEST\033[0m\n-----"
+    assert res == f"-----{os.linesep}\033[1;96mTEST\033[0m{os.linesep}-----"
 
 
 def test_report_header_nocolor(monkeypatch):
@@ -144,7 +146,7 @@ def test_report_header_nocolor(monkeypatch):
     monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
 
     res = pathins.stringbuilder.report_header("TEST", nocolor=True)
-    assert res == "-----\nTEST\n-----"
+    assert res == f"-----{os.linesep}TEST{os.linesep}-----"
 
 
 # def test_overlap_result_pass_default(monkeypatch):
