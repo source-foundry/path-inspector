@@ -466,3 +466,25 @@ def test_segment_quadratic_curve_nocolor_default(monkeypatch):
         coord1, coord2, coord3, 1.0, nocolor=True
     )
     assert res == "(0,0) (1,1) (2,2): QCURVE 1.00 units"
+
+
+def test_segment_total_distance_default(monkeypatch):
+    # mock tty
+    def mock_isatty():
+        return True
+
+    # apply the monkeypatch for sys.stdout.isatty()
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
+    res = pathins.stringbuilder.segment_total_distance(1.0)
+    assert res == "\033[1mTotal\033[0m: 1.00 units"
+
+
+def test_segment_total_distance_nocolor(monkeypatch):
+    # mock tty
+    def mock_isatty():
+        return True
+
+    # apply the monkeypatch for sys.stdout.isatty()
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
+    res = pathins.stringbuilder.segment_total_distance(1.0, nocolor=True)
+    assert res == "Total: 1.00 units"
