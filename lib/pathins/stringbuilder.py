@@ -174,7 +174,7 @@ def _transformed_component(components_with_transforms: Sequence[Tuple]) -> str:
 
 
 def segment_line(
-    coord1: Coordinate, coord2: Coordinate, distance: float, nocolor: bool
+    coord1: Coordinate, coord2: Coordinate, distance: float, nocolor: bool = False
 ) -> str:
     if not nocolor and IS_A_TTY:
         # color coord1 start and end points
@@ -207,7 +207,7 @@ def segment_quadratic_curve(
     coord2: Coordinate,
     coord3: Coordinate,
     distance: float,
-    nocolor: bool,
+    nocolor: bool = False,
 ) -> str:
     if not nocolor and IS_A_TTY:
         if coord1.startpoint:
