@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.5.0
+
+- add `segments` sub-command with glyph segment line distance and arc length reporting
+- performance improvement: removed `sys.stdout.isatty()` check from loops in stringbuilder module
+- fix: do not apply ANSI color escapes when we are not in a TTY, includes cyan_text, cyan_bright_text, green_text, and red_text functions in the stringbuilder module
+- add `--pretty` mypy option to Makefile type checking target
+- add line length = 90 definition to the isort import sorting Makefile target
+- bump fontTools dependency to v4.16.1
+
 ## v0.4.0
 
 - add `contours` sub-command with glyph contour number reporting

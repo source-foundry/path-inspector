@@ -14,6 +14,7 @@ The following sub-commands are available:
 - `coordinates`: path coordinates report (as of v0.3.0)
 - `direction`: outermost contour path direction report (as of v0.2.0)
 - `path`: curve path report
+- `segments`: curve segment report, with line distances and quadratic curve arc lengths (as of v0.5.0)
 
 ## Installation
 
