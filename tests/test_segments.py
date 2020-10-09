@@ -105,12 +105,12 @@ def test_segments_run_single_glyph_noncomposite_default(capsys, monkeypatch):
     assert "\033[1;96m'A' segments\033[0m" in captured.out
 
     assert (
-        f"\033[32m(545,0)\033[0m (459,221): \033[1;96mLINE\033[0m 237.14 units{os.linesep}"
+        f"\033[32m(545,0)\033[0m (459,221): \033[1;96mLINE\033[0m 237.14 units\n"
         f"(459,221) (176,221): \033[1;96mLINE\033[0m 283.00 units"
     ) in captured.out
 
     assert (
-        f"(287,517) (206,301): \033[1;96mLINE\033[0m 230.69 units{os.linesep}"
+        f"(287,517) (206,301): \033[1;96mLINE\033[0m 230.69 units\n"
         f"\033[31m(206,301)\033[0m \033[32m(432,301)\033[0m: \033[1;96mLINE\033[0m 226.00 units"
     ) in captured.out
 
@@ -130,12 +130,12 @@ def test_segments_run_single_glyph_noncomposite_nocolor(capsys, monkeypatch):
     assert "'A' segments" in captured.out
 
     assert (
-        f"(545,0) (459,221): LINE 237.14 units{os.linesep}"
+        f"(545,0) (459,221): LINE 237.14 units\n"
         f"(459,221) (176,221): LINE 283.00 units"
     ) in captured.out
 
     assert (
-        f"(287,517) (206,301): LINE 230.69 units{os.linesep}"
+        f"(287,517) (206,301): LINE 230.69 units\n"
         f"(206,301) (432,301): LINE 226.00 units"
     ) in captured.out
 
@@ -155,8 +155,8 @@ def test_segments_run_single_glyph_composite_default(capsys, monkeypatch):
     assert "\033[1;96m'uni2E2E' segments\033[0m" in captured.out
 
     assert (
-        f"\033[32m(303,201)\033[0m (303,228): \033[1;96mLINE\033[0m 27.00 units{os.linesep}"
-        f"(303,228) (303,266) (296,294): \033[1;96mQCURVE\033[0m 66.53 units"
+        "\033[32m(303,201)\033[0m (303,228): \033[1;96mLINE\033[0m 27.00 units\n"
+        "(303,228) (303,266) (296,294): \033[1;96mQCURVE\033[0m 66.53 units"
     ) in captured.out
 
     assert (
@@ -180,8 +180,8 @@ def test_segments_run_single_glyph_composite_nocolor(capsys, monkeypatch):
     assert "'uni2E2E' segments" in captured.out
 
     assert (
-        f"(303,201) (303,228): LINE 27.00 units{os.linesep}"
-        f"(303,228) (303,266) (296,294): QCURVE 66.53 units"
+        "(303,201) (303,228): LINE 27.00 units\n"
+        "(303,228) (303,266) (296,294): QCURVE 66.53 units"
     ) in captured.out
 
     assert "(309,2) (326,18) (326,54): QCURVE 56.25 units" in captured.out
