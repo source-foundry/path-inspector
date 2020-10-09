@@ -238,3 +238,10 @@ def segment_quadratic_curve(
             f"({coord1.x},{coord1.y}) ({coord2.x},{coord2.y}) ({coord3.x},{coord3.y}): "
             f"QCURVE {round(distance, 2):.2f} units"
         )
+
+
+def segment_total_distance(distance: float, nocolor: bool = False) -> str:
+    if not nocolor and IS_A_TTY:
+        return f"{bold_text('Total')}: {round(distance, 2):.2f} units"
+    else:
+        return f"Total: {round(distance, 2):.2f} units"
