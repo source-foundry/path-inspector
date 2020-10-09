@@ -1,6 +1,5 @@
 import argparse
 import os
-from os import O_TRUNC
 
 import pytest
 from fontTools.ttLib import TTFont
