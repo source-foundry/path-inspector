@@ -193,12 +193,12 @@ def segment_line(
 
         return (
             f"{coordinates1} {coordinates2}: "
-            f"{cyan_bright_text('LINE')} {round(distance, 2): .2f} units"
+            f"{cyan_bright_text('LINE')} {round(distance, 2):.2f} units"
         )
     else:
         return (
             f"({coord1.x},{coord1.y}) ({coord2.x},{coord2.y}): "
-            f"LINE {round(distance, 2): .2f} units"
+            f"LINE {round(distance, 2):.2f} units"
         )
 
 
@@ -224,15 +224,17 @@ def segment_quadratic_curve(
 
         if coord3.startpoint:
             coordinates3 = f"{green_start}({coord3.x},{coord3.y}){reset}"
+        elif coord3.endpoint:
+            coordinates3 = f"{red_start}({coord3.x},{coord3.y}){reset}"
         else:
             coordinates3 = f"({coord3.x},{coord3.y})"
 
         return (
-            f"{coordinates1} {coordinates2} {coordinates3} "
-            f"{cyan_bright_text('QCURVE')} {round(distance, 2): .2f} units"
+            f"{coordinates1} {coordinates2} {coordinates3}: "
+            f"{cyan_bright_text('QCURVE')} {round(distance, 2):.2f} units"
         )
     else:
         return (
-            f"({coord1.x},{coord1.y}) ({coord2.x},{coord2.y}) ({coord3.x},{coord3.y}) "
-            f"QCURVE {round(distance, 2): .2f} units"
+            f"({coord1.x},{coord1.y}) ({coord2.x},{coord2.y}) ({coord3.x},{coord3.y}): "
+            f"QCURVE {round(distance, 2):.2f} units"
         )
