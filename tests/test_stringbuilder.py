@@ -3,6 +3,7 @@ import os
 import pytest
 
 import pathins.stringbuilder
+from pathins.datastructures import Coordinate
 
 
 def test_bold_text(monkeypatch):
@@ -273,3 +274,73 @@ def test_direction_result_counterclockwise_with_two_components(monkeypatch):
         f"          with component 'A' transform: [[1.0, 0], [0, 1.0]]{os.linesep}"
         f"          with component 'B' transform: [[1.0, 0], [0, 1.0]]"
     )
+
+
+def test_segment_line_default(monkeypatch):
+    # mock tty
+    def mock_isatty():
+        return True
+
+    # apply the monkeypatch for sys.stdout.isatty()
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
+
+    coord1 = Coordinate(0, 0, True, False, False, False)
+    coord2 = Coordinate(1, 1, True, False, False, False)
+    res = pathins.stringbuilder.segment_line(coord1, coord2, 1.0, nocolor=False)
+    assert res == "(0,0) (1,1): \033[1;96mLINE\033[0m  1.00 units"
+
+
+def test_segment_line_with_coord1_startpoint_color(monkeypatch):
+    # mock tty
+    def mock_isatty():
+        return True
+
+    # apply the monkeypatch for sys.stdout.isatty()
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
+
+    coord1 = Coordinate(0, 0, True, True, False, False)
+    coord2 = Coordinate(1, 1, True, False, False, False)
+    res = pathins.stringbuilder.segment_line(coord1, coord2, 1.0, nocolor=False)
+    assert res == "\033[32m(0,0)\033[0m (1,1): \033[1;96mLINE\033[0m  1.00 units"
+
+
+def test_segment_line_with_coord2_startpoint_color(monkeypatch):
+    # mock tty
+    def mock_isatty():
+        return True
+
+    # apply the monkeypatch for sys.stdout.isatty()
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
+
+    coord1 = Coordinate(0, 0, True, False, False, False)
+    coord2 = Coordinate(1, 1, True, True, False, False)
+    res = pathins.stringbuilder.segment_line(coord1, coord2, 1.0, nocolor=False)
+    assert res == "(0,0) \033[32m(1,1)\033[0m: \033[1;96mLINE\033[0m  1.00 units"
+
+
+def test_segment_line_with_endpoint_color(monkeypatch):
+    # mock tty
+    def mock_isatty():
+        return True
+
+    # apply the monkeypatch for sys.stdout.isatty()
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
+
+    coord1 = Coordinate(0, 0, True, False, True, False)
+    coord2 = Coordinate(1, 1, True, False, False, False)
+    res = pathins.stringbuilder.segment_line(coord1, coord2, 1.0, nocolor=False)
+    assert res == "\033[31m(0,0)\033[0m (1,1): \033[1;96mLINE\033[0m  1.00 units"
+
+
+def test_segment_line_with_nocolor(monkeypatch):
+    # mock tty
+    def mock_isatty():
+        return True
+
+    # apply the monkeypatch for sys.stdout.isatty()
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
+
+    coord1 = Coordinate(0, 0, True, False, True, False)
+    coord2 = Coordinate(1, 1, True, False, False, False)
+    res = pathins.stringbuilder.segment_line(coord1, coord2, 1.0, nocolor=True)
+    assert res == "(0,0) (1,1): LINE  1.00 units"
