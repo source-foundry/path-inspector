@@ -287,7 +287,7 @@ def test_segment_line_default(monkeypatch):
     coord1 = Coordinate(0, 0, True, False, False, False)
     coord2 = Coordinate(1, 1, True, False, False, False)
     res = pathins.stringbuilder.segment_line(coord1, coord2, 1.0, nocolor=False)
-    assert res == "(0,0) (1,1): \033[1;96mLINE\033[0m  1.00 units"
+    assert res == "(0,0) (1,1): \033[1;96mLINE\033[0m 1.00 units"
 
 
 def test_segment_line_with_coord1_startpoint_color(monkeypatch):
@@ -301,7 +301,7 @@ def test_segment_line_with_coord1_startpoint_color(monkeypatch):
     coord1 = Coordinate(0, 0, True, True, False, False)
     coord2 = Coordinate(1, 1, True, False, False, False)
     res = pathins.stringbuilder.segment_line(coord1, coord2, 1.0, nocolor=False)
-    assert res == "\033[32m(0,0)\033[0m (1,1): \033[1;96mLINE\033[0m  1.00 units"
+    assert res == "\033[32m(0,0)\033[0m (1,1): \033[1;96mLINE\033[0m 1.00 units"
 
 
 def test_segment_line_with_coord2_startpoint_color(monkeypatch):
@@ -315,7 +315,7 @@ def test_segment_line_with_coord2_startpoint_color(monkeypatch):
     coord1 = Coordinate(0, 0, True, False, False, False)
     coord2 = Coordinate(1, 1, True, True, False, False)
     res = pathins.stringbuilder.segment_line(coord1, coord2, 1.0, nocolor=False)
-    assert res == "(0,0) \033[32m(1,1)\033[0m: \033[1;96mLINE\033[0m  1.00 units"
+    assert res == "(0,0) \033[32m(1,1)\033[0m: \033[1;96mLINE\033[0m 1.00 units"
 
 
 def test_segment_line_with_endpoint_color(monkeypatch):
@@ -329,7 +329,7 @@ def test_segment_line_with_endpoint_color(monkeypatch):
     coord1 = Coordinate(0, 0, True, False, True, False)
     coord2 = Coordinate(1, 1, True, False, False, False)
     res = pathins.stringbuilder.segment_line(coord1, coord2, 1.0, nocolor=False)
-    assert res == "\033[31m(0,0)\033[0m (1,1): \033[1;96mLINE\033[0m  1.00 units"
+    assert res == "\033[31m(0,0)\033[0m (1,1): \033[1;96mLINE\033[0m 1.00 units"
 
 
 def test_segment_line_with_nocolor(monkeypatch):
@@ -343,4 +343,126 @@ def test_segment_line_with_nocolor(monkeypatch):
     coord1 = Coordinate(0, 0, True, False, True, False)
     coord2 = Coordinate(1, 1, True, False, False, False)
     res = pathins.stringbuilder.segment_line(coord1, coord2, 1.0, nocolor=True)
-    assert res == "(0,0) (1,1): LINE  1.00 units"
+    assert res == "(0,0) (1,1): LINE 1.00 units"
+
+
+def test_segment_quadratic_curve_default(monkeypatch):
+    # mock tty
+    def mock_isatty():
+        return True
+
+    # apply the monkeypatch for sys.stdout.isatty()
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
+
+    coord1 = Coordinate(0, 0, True, False, False, False)
+    coord2 = Coordinate(1, 1, False, False, False, False)
+    coord3 = Coordinate(2, 2, True, False, False, False)
+    res = pathins.stringbuilder.segment_quadratic_curve(
+        coord1, coord2, coord3, 1.0, nocolor=False
+    )
+    assert res == "(0,0) (1,1) (2,2): \033[1;96mQCURVE\033[0m 1.00 units"
+
+
+def test_segment_quadratic_curve_coord1_startpoint(monkeypatch):
+    # mock tty
+    def mock_isatty():
+        return True
+
+    # apply the monkeypatch for sys.stdout.isatty()
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
+
+    coord1 = Coordinate(0, 0, True, True, False, False)
+    coord2 = Coordinate(1, 1, False, False, False, False)
+    coord3 = Coordinate(2, 2, True, False, False, False)
+    res = pathins.stringbuilder.segment_quadratic_curve(
+        coord1, coord2, coord3, 1.0, nocolor=False
+    )
+    assert res == "\033[32m(0,0)\033[0m (1,1) (2,2): \033[1;96mQCURVE\033[0m 1.00 units"
+
+
+def test_segment_quadratic_curve_coord3_startpoint(monkeypatch):
+    # mock tty
+    def mock_isatty():
+        return True
+
+    # apply the monkeypatch for sys.stdout.isatty()
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
+
+    coord1 = Coordinate(0, 0, True, False, False, False)
+    coord2 = Coordinate(1, 1, False, False, False, False)
+    coord3 = Coordinate(2, 2, True, True, False, False)
+    res = pathins.stringbuilder.segment_quadratic_curve(
+        coord1, coord2, coord3, 1.0, nocolor=False
+    )
+    assert res == "(0,0) (1,1) \033[32m(2,2)\033[0m: \033[1;96mQCURVE\033[0m 1.00 units"
+
+
+def test_segment_quadratic_curve_coord1_endpoint(monkeypatch):
+    # mock tty
+    def mock_isatty():
+        return True
+
+    # apply the monkeypatch for sys.stdout.isatty()
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
+
+    coord1 = Coordinate(0, 0, True, False, True, False)
+    coord2 = Coordinate(1, 1, False, False, False, False)
+    coord3 = Coordinate(2, 2, True, False, False, False)
+    res = pathins.stringbuilder.segment_quadratic_curve(
+        coord1, coord2, coord3, 1.0, nocolor=False
+    )
+    assert res == "\033[31m(0,0)\033[0m (1,1) (2,2): \033[1;96mQCURVE\033[0m 1.00 units"
+
+
+def test_segment_quadratic_curve_coord3_endpoint(monkeypatch):
+    # mock tty
+    def mock_isatty():
+        return True
+
+    # apply the monkeypatch for sys.stdout.isatty()
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
+
+    coord1 = Coordinate(0, 0, True, False, False, False)
+    coord2 = Coordinate(1, 1, False, False, False, False)
+    coord3 = Coordinate(2, 2, True, False, True, False)
+    res = pathins.stringbuilder.segment_quadratic_curve(
+        coord1, coord2, coord3, 1.0, nocolor=False
+    )
+    assert res == "(0,0) (1,1) \033[31m(2,2)\033[0m: \033[1;96mQCURVE\033[0m 1.00 units"
+
+
+def test_segment_quadratic_curve_coord2_coord3_endpoint_startpoint(monkeypatch):
+    # mock tty
+    def mock_isatty():
+        return True
+
+    # apply the monkeypatch for sys.stdout.isatty()
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
+
+    coord1 = Coordinate(0, 0, True, False, False, False)
+    coord2 = Coordinate(1, 1, False, False, True, False)
+    coord3 = Coordinate(2, 2, True, True, False, False)
+    res = pathins.stringbuilder.segment_quadratic_curve(
+        coord1, coord2, coord3, 1.0, nocolor=False
+    )
+    assert (
+        res
+        == "(0,0) \033[31m(1,1)\033[0m \033[32m(2,2)\033[0m: \033[1;96mQCURVE\033[0m 1.00 units"
+    )
+
+
+def test_segment_quadratic_curve_nocolor_default(monkeypatch):
+    # mock tty
+    def mock_isatty():
+        return True
+
+    # apply the monkeypatch for sys.stdout.isatty()
+    monkeypatch.setattr(pathins.stringbuilder, "IS_A_TTY", mock_isatty)
+
+    coord1 = Coordinate(0, 0, True, False, False, False)
+    coord2 = Coordinate(1, 1, False, False, True, False)
+    coord3 = Coordinate(2, 2, True, True, False, False)
+    res = pathins.stringbuilder.segment_quadratic_curve(
+        coord1, coord2, coord3, 1.0, nocolor=True
+    )
+    assert res == "(0,0) (1,1) (2,2): QCURVE 1.00 units"
