@@ -22,7 +22,7 @@ def run(argv) -> None:
     # ===========================================================
     # argparse command line argument definitions
     # ===========================================================
-    parser = argparse.ArgumentParser(description="TTF font curve path inspector")
+    parser = argparse.ArgumentParser(description="Quadratic font curve path inspector")
     parser.add_argument(
         "-v", "--version", action="version", version=f"pathins v{__version__}"
     )
