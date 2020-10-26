@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.5.2
+
+- fix: usage documentation syntax description (missing sub-command)
+
 ## v0.5.1
 
 - minor documentation and project description updates
