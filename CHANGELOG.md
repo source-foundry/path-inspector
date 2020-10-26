@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.5.1
+
+- minor documentation and project description updates
+
 ## v0.5.0
 
 - add `segments` sub-command with glyph segment line distance and arc length reporting
