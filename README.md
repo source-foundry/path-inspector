@@ -6,7 +6,7 @@
 ![Python Type Checks](https://github.com/source-foundry/path-inspector/workflows/Python%20Type%20Checks/badge.svg)
 [![codecov](https://codecov.io/gh/source-foundry/path-inspector/branch/master/graph/badge.svg)](https://codecov.io/gh/source-foundry/path-inspector)
 
-Path Inspector is a TTF font curve path inspection application.  The Python package installs the `pathins` command line executable and requires a Python v3.6+ interpreter.
+Path Inspector is a quadratic font curve path inspection application.  The Python package installs the `pathins` command line executable and requires a Python v3.6+ interpreter.
 
 The following sub-commands are available:
 
