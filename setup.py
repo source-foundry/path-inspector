@@ -6,7 +6,7 @@ from setuptools import find_packages, setup
 
 # Package meta-data.
 NAME = "pathins"
-DESCRIPTION = "TTF font curve path inspector"
+DESCRIPTION = "Quadratic font curve path inspector"
 LICENSE = "Apache License v2.0"
 URL = "https://github.com/source-foundry/path-inspector"
 EMAIL = "chris@sourcefoundry.org"
