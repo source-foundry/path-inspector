@@ -51,7 +51,7 @@ $ pip3 install --ignore-installed -r requirements.txt -e ".[dev]"
 ## Usage
 
 ```
-$ pathins [OPTIONS] [FILEPATH] [OPTIONAL GLYPH NAME]
+$ pathins [SUB-COMMAND] [OPTIONS] [FILEPATH] [OPTIONAL GLYPH NAME]
 ```
 
 See `pathins --help` for additional details.
