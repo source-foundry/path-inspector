@@ -2,6 +2,7 @@
 
 ## v0.5.1
 
+- add cPython 3.9 testing
 - minor documentation and project description updates
 
 ## v0.5.0
