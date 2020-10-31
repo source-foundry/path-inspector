@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.5.3
+
+- support cPython 3.9 interpreter
+- bump skia-pathops dependency to v0.5.1.post1
+
 ## v0.5.2
 
 - fix: usage documentation syntax description (missing sub-command)
