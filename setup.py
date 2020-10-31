@@ -13,7 +13,11 @@ EMAIL = "chris@sourcefoundry.org"
 AUTHOR = "Chris Simpkins"
 REQUIRES_PYTHON = ">=3.6.0"
 
-INSTALL_REQUIRES = ["skia-pathops >= 0.5.0", "cython >= 0.29.21", "fontTools >= 4.15.0"]
+INSTALL_REQUIRES = [
+    "skia-pathops >= 0.5.1.post1",  # cPy3.9 support added @ 0.5.1.post1
+    "cython >= 0.29.21",
+    "fontTools >= 4.15.0",
+]
 # Optional packages
 EXTRAS_REQUIRES = {
     # for developer installs
@@ -81,5 +85,6 @@ setup(
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
     ],
 )
