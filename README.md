@@ -10,11 +10,11 @@ Path Inspector is a quadratic font curve path inspection application.  The Pytho
 
 The following sub-commands are available:
 
-- `contours`: path contour number report (as of v0.4.0)
-- `coordinates`: path coordinates report (as of v0.3.0)
-- `direction`: outermost contour path direction report (as of v0.2.0)
+- `contours`: path contour number report
+- `coordinates`: path coordinates report
+- `direction`: outermost contour path direction report
 - `path`: curve path report
-- `segments`: curve segment report, with line distances and quadratic curve arc lengths (as of v0.5.0)
+- `segments`: curve segment report, with line distances and quadratic curve arc lengths
 
 ## Installation
 
