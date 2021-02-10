@@ -8,5 +8,5 @@ cython==0.29.21
     # via -r requirements.in
 fonttools==4.19.1
     # via -r requirements.in
-skia-pathops==0.6.0.post1
+skia-pathops==0.6.0.post2
     # via -r requirements.in
