@@ -6,7 +6,7 @@
 #
 cython==0.29.22
     # via -r requirements.in
-fonttools==4.20.0
+fonttools==4.21.1
     # via -r requirements.in
 skia-pathops==0.6.0.post2
     # via -r requirements.in
