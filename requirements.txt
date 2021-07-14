@@ -4,7 +4,7 @@
 #
 #    pip-compile
 #
-cython==0.29.23
+cython==0.29.24
     # via -r requirements.in
 fonttools==4.25.0
     # via -r requirements.in
